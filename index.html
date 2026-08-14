@@ -6,7 +6,10 @@
 
 <title>RK Garage - Data Alat</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+>
 
 <style>
 * {
@@ -173,6 +176,12 @@ button:hover {
     opacity: .92;
 }
 
+button:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+    transform: none;
+}
+
 .add-buy {
     background: linear-gradient(135deg, #9333ea, #c084fc);
 }
@@ -282,6 +291,21 @@ button:hover {
     grid-template-columns: 1fr;
     gap: 10px;
     margin-top: 20px;
+}
+
+.status {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 13px;
+    min-height: 20px;
+}
+
+.status.success {
+    color: #86efac;
+}
+
+.status.error {
+    color: #fca5a5;
 }
 
 @media (max-width: 850px) {
@@ -459,11 +483,14 @@ button:hover {
 
 
             <button
+                id="buyWebhookButton"
                 class="discord-buy"
                 onclick="sendBuyWebhook()"
             >
                 💬 Kirim Data Beli
             </button>
+
+            <div id="buyStatus" class="status"></div>
 
         </div>
 
@@ -591,11 +618,14 @@ button:hover {
 
 
             <button
+                id="sellWebhookButton"
                 class="discord-sell"
                 onclick="sendSellWebhook()"
             >
                 💬 Kirim Data Jual
             </button>
+
+            <div id="sellStatus" class="status"></div>
 
         </div>
 
@@ -718,13 +748,16 @@ const WEBHOOK_BELI =
 
 /* =========================================================
    HARGA
-========================================================= */
+   ========================================================= */
 
 const BUY_PRICES = {
 
     "ADVANCE REPAIR KIT": 10000,
+
     "REPAIR KIT": 9000,
+
     "TIRE KIT": 9000,
+
     "CLEANING KIT": 2500
 
 };
@@ -733,7 +766,9 @@ const BUY_PRICES = {
 const SELL_PRICES = {
 
     "REPAIR KIT": 11000,
+
     "TIRE KIT": 11000,
+
     "CLEANING KIT": 5000
 
 };
@@ -741,7 +776,7 @@ const SELL_PRICES = {
 
 /* =========================================================
    STORAGE
-========================================================= */
+   ========================================================= */
 
 let transactions =
     JSON.parse(
@@ -751,7 +786,7 @@ let transactions =
 
 /* =========================================================
    MONEY
-========================================================= */
+   ========================================================= */
 
 function money(value) {
 
@@ -762,7 +797,7 @@ function money(value) {
 
 /* =========================================================
    DATE
-========================================================= */
+   ========================================================= */
 
 function today() {
 
@@ -775,7 +810,7 @@ function today() {
 
 /* =========================================================
    SAVE
-========================================================= */
+   ========================================================= */
 
 function saveData() {
 
@@ -788,8 +823,8 @@ function saveData() {
 
 
 /* =========================================================
-   GET DAILY SOLD
-========================================================= */
+   DAILY SOLD
+   ========================================================= */
 
 function getDailySold(itemName) {
 
@@ -823,7 +858,7 @@ function getDailySold(itemName) {
 
 /* =========================================================
    ADD PURCHASE
-========================================================= */
+   ========================================================= */
 
 function addPurchase() {
 
@@ -940,7 +975,7 @@ function addPurchase() {
 
 /* =========================================================
    ADD SALE
-========================================================= */
+   ========================================================= */
 
 function addSale() {
 
@@ -974,6 +1009,7 @@ function addSale() {
 
         {
             name: "REPAIR KIT",
+
             quantity: Number(
                 document.getElementById("sellRepair").value
             )
@@ -981,6 +1017,7 @@ function addSale() {
 
         {
             name: "TIRE KIT",
+
             quantity: Number(
                 document.getElementById("sellTire").value
             )
@@ -988,6 +1025,7 @@ function addSale() {
 
         {
             name: "CLEANING KIT",
+
             quantity: Number(
                 document.getElementById("sellCleaning").value
             )
@@ -1140,13 +1178,16 @@ function addSale() {
 
 /* =========================================================
    CLEAR BUY
-========================================================= */
+   ========================================================= */
 
 function clearBuyForm() {
 
     document.getElementById("buyAdvance").value = 0;
+
     document.getElementById("buyRepair").value = 0;
+
     document.getElementById("buyTire").value = 0;
+
     document.getElementById("buyCleaning").value = 0;
 
 }
@@ -1154,13 +1195,16 @@ function clearBuyForm() {
 
 /* =========================================================
    CLEAR SELL
-========================================================= */
+   ========================================================= */
 
 function clearSellForm() {
 
     document.getElementById("sellRepair").value = 0;
+
     document.getElementById("sellTire").value = 0;
+
     document.getElementById("sellCleaning").value = 0;
+
     document.getElementById("customerName").value = "";
 
 }
@@ -1168,12 +1212,14 @@ function clearSellForm() {
 
 /* =========================================================
    DASHBOARD
-========================================================= */
+   ========================================================= */
 
 function renderDashboard() {
 
     let totalBuy = 0;
+
     let totalSell = 0;
+
     let totalProfit = 0;
 
 
@@ -1213,7 +1259,7 @@ function renderDashboard() {
 
 /* =========================================================
    TRANSACTIONS
-========================================================= */
+   ========================================================= */
 
 function renderTransactions() {
 
@@ -1273,7 +1319,7 @@ function renderTransactions() {
             const items =
                 transaction.items
                     .map(item =>
-                        `${item.name} × ${item.quantity} = $${money(item.subtotal)}`
+                        `${escapeHTML(item.name)} × ${item.quantity} = $${money(item.subtotal)}`
                     )
                     .join("<br>");
 
@@ -1307,8 +1353,8 @@ function renderTransactions() {
                             </div>
 
                             <div class="transaction-date">
-                                ${transaction.date}
-                                ${transaction.time}
+                                ${escapeHTML(transaction.date)}
+                                ${escapeHTML(transaction.time)}
                             </div>
 
                         </div>
@@ -1358,7 +1404,7 @@ function renderTransactions() {
 
 /* =========================================================
    DELETE
-========================================================= */
+   ========================================================= */
 
 function deleteTransaction(id) {
 
@@ -1387,7 +1433,7 @@ function deleteTransaction(id) {
 
 /* =========================================================
    RESET
-========================================================= */
+   ========================================================= */
 
 function resetData() {
 
@@ -1416,7 +1462,7 @@ function resetData() {
 
 /* =========================================================
    ESCAPE HTML
-========================================================= */
+   ========================================================= */
 
 function escapeHTML(value) {
 
@@ -1431,30 +1477,55 @@ function escapeHTML(value) {
 
 
 /* =========================================================
+   GET LATEST BUY
+   ========================================================= */
+
+function getLatestBuy() {
+
+    return transactions.find(
+        transaction =>
+            transaction.type === "buy"
+    );
+
+}
+
+
+/* =========================================================
+   GET LATEST SELL
+   ========================================================= */
+
+function getLatestSell() {
+
+    return transactions.find(
+        transaction =>
+            transaction.type === "sell"
+    );
+
+}
+
+
+/* =========================================================
    WEBHOOK BUY
-========================================================= */
+   ========================================================= */
 
 async function sendBuyWebhook() {
 
-    if (!transactions.length) {
+    const status =
+        document.getElementById("buyStatus");
 
-        alert("Tiada data untuk dihantar.");
-
-        return;
-
-    }
+    const button =
+        document.getElementById("buyWebhookButton");
 
 
-    const latestBuy =
-        transactions.find(
-            transaction =>
-                transaction.type === "buy"
-        );
+    const latestBuy = getLatestBuy();
 
 
     if (!latestBuy) {
 
-        alert("Tiada rekod pembelian.");
+        status.className = "status error";
+
+        status.innerText =
+            "❌ Tiada rekod pembelian.";
 
         return;
 
@@ -1479,40 +1550,44 @@ async function sendBuyWebhook() {
 
                 title: "🛒 DATA PEMBELIAN ALAT",
 
+                description:
+                    "Rekod pembelian alat RK Garage.",
+
                 color: 10181046,
 
                 fields: [
 
                     {
                         name: "👨‍🔧 Nama Pekerja",
-                        value: String(latestBuy.worker),
+                        value:
+                            String(latestBuy.worker || "-"),
                         inline: true
                     },
 
                     {
                         name: "📅 Tarikh",
                         value:
-                            latestBuy.date +
-                            " " +
-                            latestBuy.time,
+                            `${latestBuy.date} ${latestBuy.time}`,
                         inline: true
                     },
 
                     {
                         name: "📦 Alat Dibeli",
                         value:
-                            details ||
-                            "-"
+                            details || "-"
                     },
 
                     {
                         name: "💵 TOTAL PEMBELIAN",
                         value:
-                            "$" +
-                            money(latestBuy.total)
+                            "$" + money(latestBuy.total)
                     }
 
                 ],
+
+                footer: {
+                    text: "RK Garage • Sistem Data Alat"
+                },
 
                 timestamp:
                     new Date().toISOString()
@@ -1524,10 +1599,22 @@ async function sendBuyWebhook() {
     };
 
 
+    button.disabled = true;
+
+    button.innerText = "⏳ Menghantar...";
+
+    status.className = "status";
+
+    status.innerText =
+        "Sedang menghantar data ke Discord...";
+
+
     await sendWebhook(
         WEBHOOK_BELI,
         payload,
-        "Data pembelian berjaya dihantar ke Discord."
+        status,
+        button,
+        "💬 Kirim Data Beli"
     );
 
 }
@@ -1535,29 +1622,26 @@ async function sendBuyWebhook() {
 
 /* =========================================================
    WEBHOOK SELL
-========================================================= */
+   ========================================================= */
 
 async function sendSellWebhook() {
 
-    if (!transactions.length) {
+    const status =
+        document.getElementById("sellStatus");
 
-        alert("Tiada data untuk dihantar.");
-
-        return;
-
-    }
+    const button =
+        document.getElementById("sellWebhookButton");
 
 
-    const latestSell =
-        transactions.find(
-            transaction =>
-                transaction.type === "sell"
-        );
+    const latestSell = getLatestSell();
 
 
     if (!latestSell) {
 
-        alert("Tiada rekod penjualan.");
+        status.className = "status error";
+
+        status.innerText =
+            "❌ Tiada rekod penjualan.";
 
         return;
 
@@ -1582,55 +1666,58 @@ async function sendSellWebhook() {
 
                 title: "💰 DATA PENJUALAN ALAT",
 
+                description:
+                    "Rekod penjualan alat RK Garage.",
+
                 color: 3447003,
 
                 fields: [
 
                     {
                         name: "👨‍🔧 Nama Pekerja",
-                        value: String(latestSell.worker),
+                        value:
+                            String(latestSell.worker || "-"),
                         inline: true
                     },
 
                     {
                         name: "👤 Nama Warga",
-                        value: String(latestSell.customer),
+                        value:
+                            String(latestSell.customer || "-"),
                         inline: true
                     },
 
                     {
                         name: "📅 Tarikh",
                         value:
-                            latestSell.date +
-                            " " +
-                            latestSell.time,
-                        inline: false
+                            `${latestSell.date} ${latestSell.time}`
                     },
 
                     {
                         name: "📦 Alat Dijual",
                         value:
-                            details ||
-                            "-"
+                            details || "-"
                     },
 
                     {
                         name: "💵 TOTAL JUAL",
                         value:
-                            "$" +
-                            money(latestSell.total),
+                            "$" + money(latestSell.total),
                         inline: true
                     },
 
                     {
                         name: "📈 PROFIT",
                         value:
-                            "$" +
-                            money(latestSell.profit),
+                            "$" + money(latestSell.profit),
                         inline: true
                     }
 
                 ],
+
+                footer: {
+                    text: "RK Garage • Sistem Data Alat"
+                },
 
                 timestamp:
                     new Date().toISOString()
@@ -1642,10 +1729,22 @@ async function sendSellWebhook() {
     };
 
 
+    button.disabled = true;
+
+    button.innerText = "⏳ Menghantar...";
+
+    status.className = "status";
+
+    status.innerText =
+        "Sedang menghantar data ke Discord...";
+
+
     await sendWebhook(
         WEBHOOK_JUAL,
         payload,
-        "Data penjualan berjaya dihantar ke Discord."
+        status,
+        button,
+        "💬 Kirim Data Jual"
     );
 
 }
@@ -1653,76 +1752,107 @@ async function sendSellWebhook() {
 
 /* =========================================================
    SEND WEBHOOK
-========================================================= */
+   ========================================================= */
 
 async function sendWebhook(
     webhook,
     payload,
-    successMessage
+    status,
+    button,
+    buttonText
 ) {
 
     try {
 
-        console.log("Menghantar data ke Discord...");
+        /*
+         * ?wait=true digunakan supaya Discord
+         * memberikan response selepas webhook diterima.
+         */
+
+        const webhookURL =
+            webhook + "?wait=true";
+
 
         const response =
             await fetch(
-                webhook,
+                webhookURL,
                 {
+
                     method: "POST",
 
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type":
+                            "application/json"
                     },
 
-                    body: JSON.stringify(payload)
+                    body:
+                        JSON.stringify(payload)
+
                 }
             );
 
 
-        console.log(
-            "Discord HTTP Status:",
-            response.status
-        );
-
-
         if (response.ok) {
 
-            alert(
-                "✅ " +
-                successMessage
-            );
+            status.className =
+                "status success";
+
+            status.innerText =
+                "✅ Data berjaya dihantar ke Discord.";
 
         } else {
 
-            const error =
-                await response.text();
+            let errorText = "";
+
+            try {
+
+                errorText =
+                    await response.text();
+
+            } catch (e) {
+
+                errorText = "";
+
+            }
+
 
             console.error(
-                "Discord Error:",
-                error
+                "DISCORD WEBHOOK ERROR:",
+                response.status,
+                errorText
             );
 
-            alert(
-                "❌ Gagal hantar ke Discord.\n" +
-                "HTTP Status: " +
-                response.status
-            );
+
+            status.className =
+                "status error";
+
+            status.innerText =
+                "❌ Discord gagal menerima data. Status: " +
+                response.status;
 
         }
 
     } catch (error) {
 
         console.error(
-            "Webhook Error:",
+            "WEBHOOK FETCH ERROR:",
             error
         );
 
-        alert(
-            "❌ Tidak dapat hantar ke Discord.\n\n" +
-            "Kemungkinan GitHub Pages terkena CORS.\n" +
-            "Buka F12 → Console untuk lihat error."
-        );
+
+        status.className =
+            "status error";
+
+        status.innerText =
+            "❌ Gagal connect ke Discord: " +
+            error.message;
+
+    } finally {
+
+        button.disabled = false;
+
+        button.innerText =
+            buttonText;
 
     }
 
@@ -1731,7 +1861,7 @@ async function sendWebhook(
 
 /* =========================================================
    RENDER ALL
-========================================================= */
+   ========================================================= */
 
 function renderAll() {
 
@@ -1744,7 +1874,7 @@ function renderAll() {
 
 /* =========================================================
    START
-========================================================= */
+   ========================================================= */
 
 renderAll();
 
