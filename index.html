@@ -6,298 +6,312 @@
 
 <title>RK Garage - Data Alat</title>
 
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+>
+
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-    font-family:Arial,Helvetica,sans-serif;
+body {
+    font-family: 'Poppins', sans-serif;
     background:
-        radial-gradient(circle at top,#35175c 0%,#24103f 40%,#0d0717 100%);
-    color:#fff;
-    min-height:100vh;
-    padding:25px 15px;
+        radial-gradient(circle at top, #3b1761 0%, #211033 45%, #0b0710 100%);
+    color: white;
+    min-height: 100vh;
+    padding: 25px 15px;
 }
 
-.container{
-    max-width:1200px;
-    margin:auto;
+.container {
+    max-width: 1200px;
+    margin: auto;
 }
 
-.header{
-    text-align:center;
-    margin-bottom:30px;
+.header {
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-.logo{
-    width:160px;
-    max-width:60%;
-    height:auto;
-    display:block;
-    margin:0 auto 15px;
-    object-fit:contain;
+.logo {
+    width: 150px;
+    max-width: 70%;
+    height: auto;
+    display: block;
+    margin: 0 auto 15px;
+    object-fit: contain;
     filter:
         drop-shadow(0 0 15px rgba(192,132,252,.5))
         drop-shadow(0 0 30px rgba(168,85,247,.3));
 }
 
-.header h1{
-    font-size:42px;
-    color:#f5d0fe;
-    text-shadow:0 0 20px rgba(192,132,252,.5);
-    margin-bottom:8px;
+.header h1 {
+    font-size: 48px;
+    font-weight: 700;
+    color: #f5d0fe;
+    text-shadow: 0 0 25px rgba(192,132,252,.5);
 }
 
-.header p{
-    color:#d8b4fe;
-    margin-top:6px;
+.header p {
+    color: #d8b4fe;
+    margin-top: 6px;
 }
 
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:20px;
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
 }
 
-.card{
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:18px;
-    padding:20px;
-    backdrop-filter:blur(10px);
-    box-shadow:0 10px 30px rgba(0,0,0,.15);
+.card {
+    background: rgba(255,255,255,.055);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 18px;
+    padding: 20px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0,0,0,.15);
 }
 
-.card h2{
-    color:#f5d0fe;
-    margin-bottom:15px;
-    font-size:20px;
+.card h2 {
+    color: #f5d0fe;
+    margin-bottom: 18px;
+    font-size: 22px;
 }
 
-label{
-    display:block;
-    color:#d8b4fe;
-    font-size:13px;
-    margin-bottom:6px;
+.item-list {
+    background: rgba(0,0,0,.15);
+    border-radius: 12px;
+    padding: 5px 12px;
+    margin-bottom: 18px;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(255,255,255,.07);
+}
+
+.price-row:last-child {
+    border-bottom: none;
+}
+
+.price {
+    font-weight: 700;
+    color: #f5d0fe;
+}
+
+label {
+    display: block;
+    color: #d8b4fe;
+    font-size: 13px;
+    margin-bottom: 6px;
 }
 
 input,
-select{
-    width:100%;
-    padding:12px 14px;
-    border:none;
-    border-radius:10px;
-    background:#171020;
-    color:#fff;
-    outline:none;
-    margin-bottom:12px;
+select {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 11px;
+    background: #140d1d;
+    color: white;
+    outline: none;
+    font-size: 14px;
 }
 
 input:focus,
-select:focus{
-    box-shadow:0 0 0 2px rgba(192,132,252,.4);
+select:focus {
+    border-color: #a855f7;
+    box-shadow: 0 0 0 2px rgba(168,85,247,.15);
 }
 
-button{
-    border:none;
-    border-radius:10px;
-    padding:11px 15px;
-    cursor:pointer;
-    color:#fff;
-    font-weight:bold;
-    transition:.2s;
+input[type="number"] {
+    text-align: center;
 }
 
-button:hover{
-    transform:translateY(-1px);
-    opacity:.92;
+.form-group {
+    margin-bottom: 15px;
 }
 
-.btn-purple{
-    background:linear-gradient(135deg,#7e22ce,#c084fc);
+.quantity-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
 }
 
-.btn-green{
-    background:linear-gradient(135deg,#15803d,#4ade80);
+.quantity-box {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.07);
+    padding: 12px;
+    border-radius: 12px;
 }
 
-.btn-blue{
-    background:linear-gradient(135deg,#2563eb,#60a5fa);
+.quantity-box .item-name {
+    color: #f5d0fe;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 7px;
 }
 
-.btn-red{
-    background:linear-gradient(135deg,#b91c1c,#ef4444);
+button {
+    width: 100%;
+    border: none;
+    padding: 13px 18px;
+    border-radius: 11px;
+    cursor: pointer;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    transition: .2s;
 }
 
-.btn-orange{
-    background:linear-gradient(135deg,#c2410c,#fb923c);
+button:hover {
+    transform: translateY(-1px);
+    opacity: .92;
 }
 
-.full{
-    width:100%;
+.add-buy {
+    background: linear-gradient(135deg, #9333ea, #c084fc);
 }
 
-.price-list{
-    background:rgba(0,0,0,.18);
-    border-radius:10px;
-    padding:12px;
-    margin-bottom:15px;
+.add-sell {
+    background: linear-gradient(135deg, #2563eb, #60a5fa);
 }
 
-.price-row{
-    display:flex;
-    justify-content:space-between;
-    padding:7px 0;
-    border-bottom:1px solid rgba(255,255,255,.07);
-    font-size:14px;
+.discord-buy {
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
 }
 
-.price-row:last-child{
-    border-bottom:none;
+.discord-sell {
+    background: linear-gradient(135deg, #5865f2, #7289da);
 }
 
-.price-name{
-    color:#eee;
+.reset-btn {
+    background: #dc2626;
 }
 
-.price-value{
-    color:#e9d5ff;
-    font-weight:bold;
+.dashboard {
+    margin-top: 20px;
 }
 
-.stats{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:15px;
-    margin-bottom:20px;
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
 }
 
-.stat{
-    background:rgba(255,255,255,.06);
-    border-radius:15px;
-    padding:18px;
-    border:1px solid rgba(255,255,255,.08);
+.stat {
+    background: rgba(0,0,0,.17);
+    border-radius: 13px;
+    padding: 16px;
 }
 
-.stat-title{
-    color:#c4b5fd;
-    font-size:13px;
-    margin-bottom:8px;
+.stat-title {
+    color: #c4b5fd;
+    font-size: 13px;
 }
 
-.stat-value{
-    font-size:25px;
-    font-weight:bold;
+.stat-value {
+    margin-top: 5px;
+    font-size: 24px;
+    font-weight: 700;
 }
 
-.profit{
-    color:#86efac;
+.search-box {
+    margin-top: 20px;
 }
 
-.transaction{
-    background:rgba(0,0,0,.18);
-    border-radius:12px;
-    padding:15px;
-    margin-bottom:10px;
-    border-left:3px solid #a855f7;
+.transaction {
+    margin-top: 10px;
+    background: rgba(0,0,0,.17);
+    border-radius: 12px;
+    padding: 14px;
+    border-left: 3px solid #a855f7;
 }
 
-.transaction-top{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-    margin-bottom:8px;
+.transaction.buy {
+    border-left-color: #a855f7;
 }
 
-.transaction-title{
-    font-weight:bold;
-    color:#f5d0fe;
+.transaction.sell {
+    border-left-color: #3b82f6;
 }
 
-.transaction-date{
-    color:#9ca3af;
-    font-size:11px;
+.transaction-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
 }
 
-.transaction-info{
-    color:#ddd;
-    font-size:13px;
-    line-height:1.7;
+.transaction-title {
+    font-weight: 700;
+    color: #f5d0fe;
 }
 
-.transaction-buttons{
-    margin-top:10px;
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
+.transaction-date {
+    font-size: 11px;
+    color: #9ca3af;
 }
 
-.transaction-buttons button{
-    padding:7px 10px;
-    font-size:12px;
+.transaction-info {
+    margin-top: 8px;
+    color: #ddd6fe;
+    font-size: 13px;
+    line-height: 1.7;
 }
 
-.search{
-    margin-bottom:15px;
+.delete-btn {
+    width: auto;
+    background: #dc2626;
+    padding: 7px 11px;
+    font-size: 11px;
 }
 
-.empty{
-    color:#9ca3af;
-    text-align:center;
-    padding:20px;
+.empty {
+    text-align: center;
+    color: #9ca3af;
+    padding: 25px 10px;
 }
 
-.limit-info{
-    color:#fbbf24;
-    font-size:12px;
-    margin-top:-5px;
-    margin-bottom:12px;
+.actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
 }
 
-.warning{
-    background:rgba(245,158,11,.1);
-    border:1px solid rgba(245,158,11,.3);
-    color:#fcd34d;
-    padding:10px;
-    border-radius:10px;
-    font-size:12px;
-    margin-bottom:12px;
-}
-
-.success{
-    color:#86efac;
-}
-
-.danger{
-    color:#fca5a5;
-}
-
-.footer{
-    text-align:center;
-    color:#6b7280;
-    font-size:12px;
-    margin-top:30px;
-}
-
-@media(max-width:600px){
-
-    body{
-        padding:15px 10px;
+@media (max-width: 850px) {
+    .grid {
+        grid-template-columns: 1fr;
     }
 
-    .header h1{
-        font-size:32px;
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 15px 10px;
     }
 
-    .logo{
-        width:130px;
+    .header h1 {
+        font-size: 36px;
     }
 
-    .transaction-top{
-        flex-direction:column;
+    .quantity-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .actions {
+        grid-template-columns: 1fr;
     }
 }
 </style>
@@ -307,287 +321,391 @@ button:hover{
 
 <div class="container">
 
-<!-- HEADER -->
-<div class="header">
+    <div class="header">
 
-    <img
-        src="./RK_Garage.png"
-        alt="RK Garage Logo"
-        class="logo"
-        onerror="this.style.display='none';"
-    >
+        <img
+            src="./RK_Garage.png"
+            alt="RK Garage Logo"
+            class="logo"
+            onerror="this.style.display='none';"
+        >
 
-    <h1>RK GARAGE</h1>
+        <h1>RK GARAGE</h1>
 
-    <p>Data Pembelian & Penjualan Alat</p>
-    <p>Rekap transaksi RK Garage</p>
+        <p>Data Pembelian & Penjualan Alat</p>
 
-</div>
-
-
-<!-- DASHBOARD -->
-<div class="stats">
-
-    <div class="stat">
-        <div class="stat-title">🛒 TOTAL PEMBELIAN</div>
-        <div class="stat-value" id="totalBuy">$0</div>
     </div>
 
-    <div class="stat">
-        <div class="stat-title">💰 TOTAL PENJUALAN</div>
-        <div class="stat-value" id="totalSell">$0</div>
-    </div>
 
-    <div class="stat">
-        <div class="stat-title">📈 TOTAL PROFIT</div>
-        <div class="stat-value profit" id="totalProfit">$0</div>
-    </div>
+    <div class="grid">
 
-    <div class="stat">
-        <div class="stat-title">📦 TOTAL UNIT</div>
-        <div class="stat-value" id="totalUnits">0</div>
-    </div>
+        <!-- =========================
+             BELI ALAT
+        ========================== -->
 
-</div>
+        <div class="card">
+
+            <h2>🛒 Beli Alat</h2>
+
+            <div class="item-list">
+
+                <div class="price-row">
+                    <span>ADVANCE REPAIR KIT</span>
+                    <span class="price">$10,000</span>
+                </div>
+
+                <div class="price-row">
+                    <span>REPAIR KIT</span>
+                    <span class="price">$9,000</span>
+                </div>
+
+                <div class="price-row">
+                    <span>TIRE KIT</span>
+                    <span class="price">$9,000</span>
+                </div>
+
+                <div class="price-row">
+                    <span>CLEANING KIT</span>
+                    <span class="price">$2,500</span>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Nama Pekerja</label>
+
+                <input
+                    type="text"
+                    id="buyWorker"
+                    placeholder="Nama pekerja"
+                >
+
+            </div>
 
 
-<div class="grid">
+            <label>Quantity Setiap Alat</label>
 
-<!-- =========================
-     DATA PEMBELIAN
-========================= -->
+            <div class="quantity-grid">
 
-<div class="card">
+                <div class="quantity-box">
 
-    <h2>🛒 Beli Alat</h2>
+                    <div class="item-name">
+                        ADVANCE REPAIR KIT
+                    </div>
 
-    <div class="price-list">
+                    <input
+                        type="number"
+                        id="buyAdvance"
+                        min="0"
+                        value="0"
+                    >
 
-        <div class="price-row">
-            <span class="price-name">ADVANCE REPAIR KIT</span>
-            <span class="price-value">$10,000</span>
+                </div>
+
+
+                <div class="quantity-box">
+
+                    <div class="item-name">
+                        REPAIR KIT
+                    </div>
+
+                    <input
+                        type="number"
+                        id="buyRepair"
+                        min="0"
+                        value="0"
+                    >
+
+                </div>
+
+
+                <div class="quantity-box">
+
+                    <div class="item-name">
+                        TIRE KIT
+                    </div>
+
+                    <input
+                        type="number"
+                        id="buyTire"
+                        min="0"
+                        value="0"
+                    >
+
+                </div>
+
+
+                <div class="quantity-box">
+
+                    <div class="item-name">
+                        CLEANING KIT
+                    </div>
+
+                    <input
+                        type="number"
+                        id="buyCleaning"
+                        min="0"
+                        value="0"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="add-buy"
+                onclick="addPurchase()"
+            >
+                ➕ Tambah Pembelian
+            </button>
+
+
+            <div style="height:10px;"></div>
+
+
+            <button
+                class="discord-buy"
+                onclick="sendBuyWebhook()"
+            >
+                💬 Kirim Data Beli
+            </button>
+
         </div>
 
-        <div class="price-row">
-            <span class="price-name">REPAIR KIT</span>
-            <span class="price-value">$9,000</span>
-        </div>
 
-        <div class="price-row">
-            <span class="price-name">TIRE KIT</span>
-            <span class="price-value">$9,000</span>
-        </div>
+        <!-- =========================
+             JUAL ALAT
+        ========================== -->
 
-        <div class="price-row">
-            <span class="price-name">CLEANING KIT</span>
-            <span class="price-value">$2,500</span>
+        <div class="card">
+
+            <h2>💰 Jual Alat</h2>
+
+            <div class="item-list">
+
+                <div class="price-row">
+                    <span>REPAIR KIT</span>
+                    <span class="price">$11,000</span>
+                </div>
+
+                <div class="price-row">
+                    <span>TIRE KIT</span>
+                    <span class="price">$11,000</span>
+                </div>
+
+                <div class="price-row">
+                    <span>CLEANING KIT</span>
+                    <span class="price">$5,000</span>
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Nama Pekerja</label>
+
+                <input
+                    type="text"
+                    id="sellWorker"
+                    placeholder="Nama pekerja yang menjual"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Nama Warga</label>
+
+                <input
+                    type="text"
+                    id="customerName"
+                    placeholder="Nama warga yang membeli"
+                >
+
+            </div>
+
+
+            <label>Quantity Setiap Alat — Max 5 Unit / Day</label>
+
+            <div class="quantity-grid">
+
+                <div class="quantity-box">
+
+                    <div class="item-name">
+                        REPAIR KIT
+                    </div>
+
+                    <input
+                        type="number"
+                        id="sellRepair"
+                        min="0"
+                        max="5"
+                        value="0"
+                    >
+
+                </div>
+
+
+                <div class="quantity-box">
+
+                    <div class="item-name">
+                        TIRE KIT
+                    </div>
+
+                    <input
+                        type="number"
+                        id="sellTire"
+                        min="0"
+                        max="5"
+                        value="0"
+                    >
+
+                </div>
+
+
+                <div class="quantity-box">
+
+                    <div class="item-name">
+                        CLEANING KIT
+                    </div>
+
+                    <input
+                        type="number"
+                        id="sellCleaning"
+                        min="0"
+                        max="5"
+                        value="0"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="add-sell"
+                onclick="addSale()"
+            >
+                ➕ Tambah Penjualan
+            </button>
+
+
+            <div style="height:10px;"></div>
+
+
+            <button
+                class="discord-sell"
+                onclick="sendSellWebhook()"
+            >
+                💬 Kirim Data Jual
+            </button>
+
         </div>
 
     </div>
 
-    <label>Nama Pekerja</label>
 
-    <input
-        type="text"
-        id="buyWorker"
-        placeholder="Nama pekerja"
-    >
+    <!-- =========================
+         DASHBOARD
+    ========================== -->
 
-    <label>Alat</label>
+    <div class="card dashboard">
 
-    <select id="buyItem">
+        <h2>📊 Dashboard</h2>
 
-        <option value="ADVANCE REPAIR KIT|10000">
-            ADVANCE REPAIR KIT - $10,000
-        </option>
+        <div class="dashboard-grid">
 
-        <option value="REPAIR KIT|9000">
-            REPAIR KIT - $9,000
-        </option>
+            <div class="stat">
 
-        <option value="TIRE KIT|9000">
-            TIRE KIT - $9,000
-        </option>
+                <div class="stat-title">
+                    Total Pembelian
+                </div>
 
-        <option value="CLEANING KIT|2500">
-            CLEANING KIT - $2,500
-        </option>
+                <div
+                    class="stat-value"
+                    id="totalBuy"
+                >
+                    $0
+                </div>
 
-    </select>
-
-    <label>Quantity</label>
-
-    <input
-        type="number"
-        id="buyQty"
-        min="1"
-        value="1"
-    >
-
-    <button
-        class="btn-purple full"
-        onclick="addPurchase()"
-    >
-        ➕ Tambah Pembelian
-    </button>
-
-    <br><br>
-
-    <button
-        class="btn-blue full"
-        onclick="sendBuyWebhook()"
-    >
-        💬 Kirim Data Beli
-    </button>
-
-</div>
+            </div>
 
 
-<!-- =========================
-     DATA PENJUALAN
-========================= -->
+            <div class="stat">
 
-<div class="card">
+                <div class="stat-title">
+                    Total Penjualan
+                </div>
 
-    <h2>💰 Jual Alat</h2>
+                <div
+                    class="stat-value"
+                    id="totalSell"
+                >
+                    $0
+                </div>
 
-    <div class="price-list">
+            </div>
 
-        <div class="price-row">
-            <span class="price-name">REPAIR KIT</span>
-            <span class="price-value">$11,000</span>
-        </div>
 
-        <div class="price-row">
-            <span class="price-name">TIRE KIT</span>
-            <span class="price-value">$11,000</span>
-        </div>
+            <div class="stat">
 
-        <div class="price-row">
-            <span class="price-name">CLEANING KIT</span>
-            <span class="price-value">$5,000</span>
+                <div class="stat-title">
+                    Total Profit
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="totalProfit"
+                >
+                    $0
+                </div>
+
+            </div>
+
         </div>
 
     </div>
 
-    <div class="warning">
-        ⚠️ Limit penjualan: <b>5 unit/day</b> untuk setiap jenis alat.
+
+    <!-- =========================
+         TRANSACTIONS
+    ========================== -->
+
+    <div class="card" style="margin-top:20px;">
+
+        <h2>📋 Rekod Transaksi</h2>
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="search"
+                placeholder="🔎 Cari nama pekerja, warga, atau alat..."
+                oninput="renderTransactions()"
+            >
+
+        </div>
+
+
+        <div id="transactions"></div>
+
+
+        <div class="actions">
+
+            <button
+                class="reset-btn"
+                onclick="resetData()"
+            >
+                🗑 Reset Semua Data
+            </button>
+
+        </div>
+
     </div>
-
-    <label>Nama Pekerja Yang Jual</label>
-
-    <input
-        type="text"
-        id="sellWorker"
-        placeholder="Nama pekerja"
-    >
-
-    <label>Nama Warga Yang Beli</label>
-
-    <input
-        type="text"
-        id="sellCitizen"
-        placeholder="Nama warga"
-    >
-
-    <label>Alat</label>
-
-    <select id="sellItem">
-
-        <option value="REPAIR KIT|11000">
-            REPAIR KIT - $11,000
-        </option>
-
-        <option value="TIRE KIT|11000">
-            TIRE KIT - $11,000
-        </option>
-
-        <option value="CLEANING KIT|5000">
-            CLEANING KIT - $5,000
-        </option>
-
-    </select>
-
-    <label>Quantity</label>
-
-    <input
-        type="number"
-        id="sellQty"
-        min="1"
-        max="5"
-        value="1"
-    >
-
-    <div
-        class="limit-info"
-        id="dailyLimit"
-    >
-        Terjual hari ini: 0 / 5
-    </div>
-
-    <button
-        class="btn-green full"
-        onclick="addSale()"
-    >
-        ➕ Tambah Penjualan
-    </button>
-
-    <br><br>
-
-    <button
-        class="btn-blue full"
-        onclick="sendSellWebhook()"
-    >
-        💬 Kirim Data Jual
-    </button>
-
-</div>
-
-</div>
-
-
-<br>
-
-
-<!-- SEARCH -->
-<div class="card">
-
-    <h2>🔎 Cari Transaksi</h2>
-
-    <input
-        class="search"
-        type="text"
-        id="searchInput"
-        placeholder="Cari nama, item, pekerja, warga..."
-        oninput="renderTransactions()"
-    >
-
-    <div id="transactions"></div>
-
-</div>
-
-
-<br>
-
-
-<!-- RESET -->
-<div class="card">
-
-    <h2>⚙️ Pengurusan Data</h2>
-
-    <button
-        class="btn-red full"
-        onclick="resetData()"
-    >
-        🗑️ Reset Semua Data
-    </button>
-
-</div>
-
-
-<div class="footer">
-    RK Garage • Data Pembelian & Penjualan
-</div>
 
 </div>
 
@@ -595,38 +713,82 @@ button:hover{
 <script>
 
 /* =========================================================
-   DISCORD WEBHOOK
+   WEBHOOK
 ========================================================= */
 
-/* DATA JUAL */
-
-const SELL_WEBHOOK =
-"https://canary.discord.com/api/webhooks/1537765528624566272/Yx7H-knrSrnzNW8BHLjQi18XoNzuDvjZAXPGhDC6YOCkCstVSx_Af1M8Vrg68QDyxp2z";
-
-
-/* DATA BELI ALAT */
-
+/*
+   DATA JUAL
+*/
 const BUY_WEBHOOK =
 "https://canary.discord.com/api/webhooks/1537768039527747665/nZFB9lHkuQcg_pNwa19KfFcxo5Nh7rMASIj7mGoQptbj8XLIAMo1fS0I0-tqDQ2zhjsm";
 
 
+/*
+   DATA BELI / JUAL
+   Webhook penjualan
+*/
+const SELL_WEBHOOK =
+"https://canary.discord.com/api/webhooks/1537765528624566272/Yx7H-knrSrnzNW8BHLjQi18XoNzuDvjZAXPGhDC6YOCkCstVSx_Af1M8Vrg68QDyxp2z";
+
+
 /* =========================================================
-   DATA
+   HARGA
+========================================================= */
+
+const BUY_PRICES = {
+
+    "ADVANCE REPAIR KIT": 10000,
+
+    "REPAIR KIT": 9000,
+
+    "TIRE KIT": 9000,
+
+    "CLEANING KIT": 2500
+
+};
+
+
+const SELL_PRICES = {
+
+    "REPAIR KIT": 11000,
+
+    "TIRE KIT": 11000,
+
+    "CLEANING KIT": 5000
+
+};
+
+
+/* =========================================================
+   STORAGE
 ========================================================= */
 
 let transactions =
     JSON.parse(
-        localStorage.getItem("rkGarageTransactions") || "[]"
-    );
+        localStorage.getItem("rkGarageTransactions")
+    ) || [];
 
 
 /* =========================================================
-   FORMAT MONEY
+   MONEY
 ========================================================= */
 
-function money(value){
+function money(value) {
 
     return Number(value).toLocaleString("en-US");
+
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+function today() {
+
+    const date = new Date();
+
+    return date.toISOString().split("T")[0];
 
 }
 
@@ -635,7 +797,7 @@ function money(value){
    SAVE
 ========================================================= */
 
-function saveData(){
+function saveData() {
 
     localStorage.setItem(
         "rkGarageTransactions",
@@ -646,22 +808,35 @@ function saveData(){
 
 
 /* =========================================================
-   TODAY
+   GET DAILY SOLD
 ========================================================= */
 
-function today(){
+function getDailySold(itemName) {
 
-    const d = new Date();
+    let total = 0;
 
-    const year = d.getFullYear();
+    transactions.forEach(transaction => {
 
-    const month =
-        String(d.getMonth() + 1).padStart(2,"0");
+        if (
+            transaction.type === "sell" &&
+            transaction.date === today()
+        ) {
 
-    const day =
-        String(d.getDate()).padStart(2,"0");
+            transaction.items.forEach(item => {
 
-    return `${year}-${month}-${day}`;
+                if (item.name === itemName) {
+
+                    total += item.quantity;
+
+                }
+
+            });
+
+        }
+
+    });
+
+    return total;
 
 }
 
@@ -670,25 +845,13 @@ function today(){
    ADD PURCHASE
 ========================================================= */
 
-function addPurchase(){
+function addPurchase() {
 
     const worker =
         document.getElementById("buyWorker").value.trim();
 
-    const itemData =
-        document.getElementById("buyItem").value.split("|");
 
-    const item =
-        itemData[0];
-
-    const price =
-        Number(itemData[1]);
-
-    const qty =
-        Number(document.getElementById("buyQty").value);
-
-
-    if(!worker){
+    if (!worker) {
 
         alert("Masukkan nama pekerja dahulu.");
 
@@ -697,52 +860,98 @@ function addPurchase(){
     }
 
 
-    if(!qty || qty < 1){
+    const items = [
 
-        alert("Quantity tidak sah.");
+        {
+            name: "ADVANCE REPAIR KIT",
+            quantity: Number(
+                document.getElementById("buyAdvance").value
+            )
+        },
+
+        {
+            name: "REPAIR KIT",
+            quantity: Number(
+                document.getElementById("buyRepair").value
+            )
+        },
+
+        {
+            name: "TIRE KIT",
+            quantity: Number(
+                document.getElementById("buyTire").value
+            )
+        },
+
+        {
+            name: "CLEANING KIT",
+            quantity: Number(
+                document.getElementById("buyCleaning").value
+            )
+        }
+
+    ].filter(item => item.quantity > 0);
+
+
+    if (items.length === 0) {
+
+        alert("Masukkan sekurang-kurangnya 1 quantity.");
 
         return;
 
     }
 
 
+    const formattedItems =
+        items.map(item => ({
+
+            name: item.name,
+
+            quantity: item.quantity,
+
+            price: BUY_PRICES[item.name],
+
+            subtotal:
+                item.quantity *
+                BUY_PRICES[item.name]
+
+        }));
+
+
     const total =
-        price * qty;
+        formattedItems.reduce(
+            (sum, item) =>
+                sum + item.subtotal,
+            0
+        );
 
 
-    transactions.push({
+    transactions.unshift({
 
         id: Date.now(),
 
-        type:"BUY",
+        type: "buy",
 
-        item:item,
+        worker: worker,
 
-        price:price,
+        customer: "-",
 
-        qty:qty,
+        items: formattedItems,
 
-        total:total,
+        total: total,
 
-        worker:worker,
+        date: today(),
 
-        citizen:"-",
-
-        date:today(),
-
-        timestamp:new Date().toLocaleString()
+        time: new Date().toLocaleTimeString()
 
     });
 
 
     saveData();
 
-    updateDashboard();
+    clearBuyForm();
 
-    renderTransactions();
-
-
-    document.getElementById("buyQty").value = 1;
+    renderAll();
 
     alert("✅ Data pembelian berjaya ditambah.");
 
@@ -750,204 +959,238 @@ function addPurchase(){
 
 
 /* =========================================================
-   CHECK DAILY SALES
-========================================================= */
-
-function getDailySold(item){
-
-    return transactions
-        .filter(t =>
-            t.type === "SELL" &&
-            t.item === item &&
-            t.date === today()
-        )
-        .reduce(
-            (sum,t) => sum + Number(t.qty),
-            0
-        );
-
-}
-
-
-/* =========================================================
-   UPDATE LIMIT
-========================================================= */
-
-function updateDailyLimit(){
-
-    const itemData =
-        document.getElementById("sellItem").value.split("|");
-
-    const item =
-        itemData[0];
-
-    const sold =
-        getDailySold(item);
-
-
-    document.getElementById(
-        "dailyLimit"
-    ).innerText =
-        `Terjual hari ini: ${sold} / 5`;
-
-}
-
-
-document.getElementById("sellItem")
-    .addEventListener(
-        "change",
-        updateDailyLimit
-    );
-
-
-/* =========================================================
    ADD SALE
 ========================================================= */
 
-function addSale(){
+function addSale() {
 
     const worker =
         document.getElementById("sellWorker").value.trim();
 
-    const citizen =
-        document.getElementById("sellCitizen").value.trim();
 
-    const itemData =
-        document.getElementById("sellItem").value.split("|");
-
-    const item =
-        itemData[0];
-
-    const sellPrice =
-        Number(itemData[1]);
-
-    const qty =
-        Number(document.getElementById("sellQty").value);
+    const customer =
+        document.getElementById("customerName").value.trim();
 
 
-    if(!worker){
+    if (!worker) {
 
-        alert("Masukkan nama pekerja yang jual.");
+        alert("Masukkan nama pekerja dahulu.");
 
         return;
 
     }
 
 
-    if(!citizen){
+    if (!customer) {
 
-        alert("Masukkan nama warga yang beli.");
-
-        return;
-
-    }
-
-
-    if(!qty || qty < 1){
-
-        alert("Quantity tidak sah.");
+        alert("Masukkan nama warga dahulu.");
 
         return;
 
     }
 
 
-    const soldToday =
-        getDailySold(item);
+    const rawItems = [
+
+        {
+            name: "REPAIR KIT",
+
+            quantity: Number(
+                document.getElementById("sellRepair").value
+            )
+        },
+
+        {
+            name: "TIRE KIT",
+
+            quantity: Number(
+                document.getElementById("sellTire").value
+            )
+        },
+
+        {
+            name: "CLEANING KIT",
+
+            quantity: Number(
+                document.getElementById("sellCleaning").value
+            )
+        }
+
+    ];
 
 
-    if(
-        soldToday + qty > 5
-    ){
-
-        alert(
-            `❌ Limit ${item} sudah melebihi 5 unit/day.\n\n` +
-            `Sudah terjual: ${soldToday}\n` +
-            `Cuba jual: ${qty}\n` +
-            `Maksimum: 5`
-        );
-
-        return;
-
-    }
+    const items = [];
 
 
-    /*
-        Cari harga beli terakhir
-        untuk kira profit.
-    */
+    for (const item of rawItems) {
 
-    const latestBuy =
-        [...transactions]
-            .reverse()
-            .find(
-                t =>
-                    t.type === "BUY" &&
-                    t.item === item
+        if (item.quantity < 0) {
+
+            alert("Quantity tidak boleh negatif.");
+
+            return;
+
+        }
+
+
+        if (item.quantity > 5) {
+
+            alert(
+                item.name +
+                " maksimum 5 unit sehari."
             );
 
+            return;
 
-    const buyPrice =
-        latestBuy
-            ? Number(latestBuy.price)
-            : 0;
+        }
 
 
-    const cost =
-        buyPrice * qty;
+        const alreadySold =
+            getDailySold(item.name);
+
+
+        if (
+            alreadySold +
+            item.quantity >
+            5
+        ) {
+
+            alert(
+                item.name +
+                " sudah terjual " +
+                alreadySold +
+                "/5 hari ini."
+            );
+
+            return;
+
+        }
+
+
+        if (item.quantity > 0) {
+
+            items.push(item);
+
+        }
+
+    }
+
+
+    if (items.length === 0) {
+
+        alert("Masukkan sekurang-kurangnya 1 quantity.");
+
+        return;
+
+    }
+
+
+    const formattedItems =
+        items.map(item => ({
+
+            name: item.name,
+
+            quantity: item.quantity,
+
+            price: SELL_PRICES[item.name],
+
+            subtotal:
+                item.quantity *
+                SELL_PRICES[item.name]
+
+        }));
 
 
     const total =
-        sellPrice * qty;
+        formattedItems.reduce(
+            (sum, item) =>
+                sum + item.subtotal,
+            0
+        );
+
+
+    const cost =
+        formattedItems.reduce(
+            (sum, item) =>
+                sum +
+                (
+                    item.quantity *
+                    BUY_PRICES[item.name]
+                ),
+            0
+        );
 
 
     const profit =
         total - cost;
 
 
-    transactions.push({
+    transactions.unshift({
 
-        id:Date.now(),
+        id: Date.now(),
 
-        type:"SELL",
+        type: "sell",
 
-        item:item,
+        worker: worker,
 
-        price:sellPrice,
+        customer: customer,
 
-        buyPrice:buyPrice,
+        items: formattedItems,
 
-        qty:qty,
+        total: total,
 
-        total:total,
+        cost: cost,
 
-        cost:cost,
+        profit: profit,
 
-        profit:profit,
+        date: today(),
 
-        worker:worker,
-
-        citizen:citizen,
-
-        date:today(),
-
-        timestamp:new Date().toLocaleString()
+        time: new Date().toLocaleTimeString()
 
     });
 
 
     saveData();
 
-    updateDashboard();
+    clearSellForm();
 
-    renderTransactions();
-
-    updateDailyLimit();
-
-
-    document.getElementById("sellQty").value = 1;
+    renderAll();
 
     alert("✅ Data penjualan berjaya ditambah.");
+
+}
+
+
+/* =========================================================
+   CLEAR BUY
+========================================================= */
+
+function clearBuyForm() {
+
+    document.getElementById("buyAdvance").value = 0;
+
+    document.getElementById("buyRepair").value = 0;
+
+    document.getElementById("buyTire").value = 0;
+
+    document.getElementById("buyCleaning").value = 0;
+
+}
+
+
+/* =========================================================
+   CLEAR SELL
+========================================================= */
+
+function clearSellForm() {
+
+    document.getElementById("sellRepair").value = 0;
+
+    document.getElementById("sellTire").value = 0;
+
+    document.getElementById("sellCleaning").value = 0;
+
+    document.getElementById("customerName").value = "";
 
 }
 
@@ -956,7 +1199,7 @@ function addSale(){
    DASHBOARD
 ========================================================= */
 
-function updateDashboard(){
+function renderDashboard() {
 
     let totalBuy = 0;
 
@@ -964,113 +1207,86 @@ function updateDashboard(){
 
     let totalProfit = 0;
 
-    let totalUnits = 0;
 
+    transactions.forEach(transaction => {
 
-    transactions.forEach(t => {
+        if (transaction.type === "buy") {
 
-        if(t.type === "BUY"){
-
-            totalBuy +=
-                Number(t.total);
-
-            totalUnits +=
-                Number(t.qty);
+            totalBuy += transaction.total;
 
         }
 
 
-        if(t.type === "SELL"){
+        if (transaction.type === "sell") {
 
-            totalSell +=
-                Number(t.total);
+            totalSell += transaction.total;
 
-            totalProfit +=
-                Number(t.profit || 0);
-
-            totalUnits +=
-                Number(t.qty);
+            totalProfit += transaction.profit || 0;
 
         }
 
     });
 
 
-    document.getElementById(
-        "totalBuy"
-    ).innerText =
+    document.getElementById("totalBuy").innerText =
         "$" + money(totalBuy);
 
 
-    document.getElementById(
-        "totalSell"
-    ).innerText =
+    document.getElementById("totalSell").innerText =
         "$" + money(totalSell);
 
 
-    document.getElementById(
-        "totalProfit"
-    ).innerText =
+    document.getElementById("totalProfit").innerText =
         "$" + money(totalProfit);
-
-
-    document.getElementById(
-        "totalUnits"
-    ).innerText =
-        totalUnits;
 
 }
 
 
 /* =========================================================
-   RENDER TRANSACTIONS
+   TRANSACTIONS
 ========================================================= */
 
-function renderTransactions(){
+function renderTransactions() {
 
     const container =
-        document.getElementById(
-            "transactions"
-        );
+        document.getElementById("transactions");
 
 
     const search =
-        document.getElementById(
-            "searchInput"
-        ).value
-        .toLowerCase()
-        .trim();
+        document
+            .getElementById("search")
+            .value
+            .toLowerCase()
+            .trim();
 
 
-    let list =
-        [...transactions]
-        .reverse();
+    let filtered =
+        transactions.filter(transaction => {
+
+            const itemNames =
+                transaction.items
+                    .map(item => item.name)
+                    .join(" ");
 
 
-    if(search){
-
-        list =
-            list.filter(t => {
-
-                const text = `
-
-                    ${t.type}
-                    ${t.item}
-                    ${t.worker}
-                    ${t.citizen}
-                    ${t.date}
-
-                `.toLowerCase();
+            const text =
+                (
+                    transaction.worker +
+                    " " +
+                    transaction.customer +
+                    " " +
+                    itemNames +
+                    " " +
+                    transaction.type
+                ).toLowerCase();
 
 
-                return text.includes(search);
+            return text.includes(search);
 
-            });
-
-    }
+        });
 
 
-    if(list.length === 0){
+    if (filtered.length === 0) {
 
         container.innerHTML =
             `<div class="empty">
@@ -1083,167 +1299,90 @@ function renderTransactions(){
 
 
     container.innerHTML =
-        list.map(t => {
+        filtered.map(transaction => {
 
-            if(t.type === "BUY"){
+            const items =
+                transaction.items
+                    .map(item =>
+                        `${item.name} × ${item.quantity} = $${money(item.subtotal)}`
+                    )
+                    .join("<br>");
 
-                return `
 
-                <div class="transaction">
+            const type =
+                transaction.type === "buy"
+                    ? "PEMBELIAN"
+                    : "PENJUALAN";
 
-                    <div class="transaction-top">
 
-                        <div class="transaction-title">
-                            🛒 PEMBELIAN
-                        </div>
-
-                        <div class="transaction-date">
-                            ${t.timestamp}
-                        </div>
-
-                    </div>
-
-                    <div class="transaction-info">
-
-                        📦 Item:
-                        <b>${t.item}</b>
+            const extra =
+                transaction.type === "sell"
+                    ? `
                         <br>
-
-                        🔢 Quantity:
-                        <b>${t.qty}</b>
-                        <br>
-
-                        👨‍🔧 Pekerja:
-                        <b>${escapeHtml(t.worker)}</b>
-                        <br>
-
-                        💵 Harga Unit:
-                        <b>$${money(t.price)}</b>
-                        <br>
-
-                        💰 Total:
-                        <b>$${money(t.total)}</b>
-
-                    </div>
-
-                    <div class="transaction-buttons">
-
-                        <button
-                            class="btn-red"
-                            onclick="deleteTransaction(${t.id})"
-                        >
-                            🗑️ Delete
-                        </button>
-
-                        <button
-                            class="btn-blue"
-                            onclick="sendSingleBuy(${t.id})"
-                        >
-                            💬 Send Discord
-                        </button>
-
-                    </div>
-
-                </div>
-
-                `;
-
-            }
+                        💰 Profit:
+                        <b>$${money(transaction.profit)}</b>
+                    `
+                    : "";
 
 
             return `
 
-            <div class="transaction">
+                <div class="transaction ${transaction.type}">
 
-                <div class="transaction-top">
+                    <div class="transaction-header">
 
-                    <div class="transaction-title">
-                        💰 PENJUALAN
+                        <div>
+
+                            <div class="transaction-title">
+                                ${type}
+                            </div>
+
+                            <div class="transaction-date">
+                                ${transaction.date}
+                                ${transaction.time}
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="delete-btn"
+                            onclick="deleteTransaction(${transaction.id})"
+                        >
+                            Hapus
+                        </button>
+
                     </div>
 
-                    <div class="transaction-date">
-                        ${t.timestamp}
+
+                    <div class="transaction-info">
+
+                        👨‍🔧 Pekerja:
+                        <b>${escapeHTML(transaction.worker)}</b>
+
+                        <br>
+
+                        👤 Warga:
+                        <b>${escapeHTML(transaction.customer)}</b>
+
+                        <br><br>
+
+                        ${items}
+
+                        ${extra}
+
+                        <br><br>
+
+                        💵 Total:
+                        <b>$${money(transaction.total)}</b>
+
                     </div>
 
                 </div>
-
-                <div class="transaction-info">
-
-                    📦 Item:
-                    <b>${t.item}</b>
-                    <br>
-
-                    🔢 Quantity:
-                    <b>${t.qty}</b>
-                    <br>
-
-                    👨‍🔧 Pekerja:
-                    <b>${escapeHtml(t.worker)}</b>
-                    <br>
-
-                    👤 Warga:
-                    <b>${escapeHtml(t.citizen)}</b>
-                    <br>
-
-                    💵 Harga Jual:
-                    <b>$${money(t.price)}</b>
-                    <br>
-
-                    💵 Modal:
-                    <b>$${money(t.buyPrice || 0)}</b>
-                    <br>
-
-                    💰 Total Jual:
-                    <b>$${money(t.total)}</b>
-                    <br>
-
-                    📈 Profit:
-                    <b class="success">
-                        $${money(t.profit || 0)}
-                    </b>
-
-                </div>
-
-                <div class="transaction-buttons">
-
-                    <button
-                        class="btn-red"
-                        onclick="deleteTransaction(${t.id})"
-                    >
-                        🗑️ Delete
-                    </button>
-
-                    <button
-                        class="btn-blue"
-                        onclick="sendSingleSell(${t.id})"
-                    >
-                        💬 Send Discord
-                    </button>
-
-                </div>
-
-            </div>
 
             `;
 
-        })
-        .join("");
-
-}
-
-
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
-
-function escapeHtml(value){
-
-    return String(value)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
+        }).join("");
 
 }
 
@@ -1252,7 +1391,7 @@ function escapeHtml(value){
    DELETE
 ========================================================= */
 
-function deleteTransaction(id){
+function deleteTransaction(id) {
 
     const confirmDelete =
         confirm(
@@ -1260,183 +1399,77 @@ function deleteTransaction(id){
         );
 
 
-    if(!confirmDelete){
-
-        return;
-
-    }
+    if (!confirmDelete) return;
 
 
     transactions =
         transactions.filter(
-            t => t.id !== id
+            transaction =>
+                transaction.id !== id
         );
 
 
     saveData();
 
-    updateDashboard();
-
-    renderTransactions();
-
-    updateDailyLimit();
+    renderAll();
 
 }
 
 
 /* =========================================================
-   SEND BUY WEBHOOK
+   RESET
 ========================================================= */
 
-async function sendBuyWebhook(){
+function resetData() {
 
-    const worker =
-        document.getElementById("buyWorker").value.trim();
-
-    const itemData =
-        document.getElementById("buyItem").value.split("|");
-
-    const item =
-        itemData[0];
-
-    const price =
-        Number(itemData[1]);
-
-    const qty =
-        Number(document.getElementById("buyQty").value);
+    const confirmReset =
+        confirm(
+            "Yakin mahu reset SEMUA data transaksi?"
+        );
 
 
-    if(!worker){
-
-        alert("Masukkan nama pekerja dahulu.");
-
-        return;
-
-    }
+    if (!confirmReset) return;
 
 
-    if(!qty || qty < 1){
+    transactions = [];
 
-        alert("Quantity tidak sah.");
-
-        return;
-
-    }
-
-
-    const total =
-        price * qty;
-
-
-    await sendWebhook(
-        BUY_WEBHOOK,
-        {
-
-            title:"🛒 DATA BELI ALAT",
-
-            color:10181046,
-
-            fields:[
-
-                {
-                    name:"👨‍🔧 Pekerja",
-                    value:worker,
-                    inline:true
-                },
-
-                {
-                    name:"📦 Alat",
-                    value:item,
-                    inline:true
-                },
-
-                {
-                    name:"🔢 Quantity",
-                    value:String(qty),
-                    inline:true
-                },
-
-                {
-                    name:"💵 Harga Unit",
-                    value:"$" + money(price),
-                    inline:true
-                },
-
-                {
-                    name:"💰 Total Beli",
-                    value:"$" + money(total),
-                    inline:true
-                }
-
-            ]
-
-        }
+    localStorage.removeItem(
+        "rkGarageTransactions"
     );
 
+
+    renderAll();
+
+    alert("✅ Semua data telah direset.");
+
 }
 
 
 /* =========================================================
-   SEND SELL WEBHOOK
+   ESCAPE HTML
 ========================================================= */
 
-async function sendSellWebhook(){
+function escapeHTML(value) {
 
-    const worker =
-        document.getElementById("sellWorker").value.trim();
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
 
-    const citizen =
-        document.getElementById("sellCitizen").value.trim();
-
-    const itemData =
-        document.getElementById("sellItem").value.split("|");
-
-    const item =
-        itemData[0];
-
-    const price =
-        Number(itemData[1]);
-
-    const qty =
-        Number(document.getElementById("sellQty").value);
+}
 
 
-    if(!worker){
+/* =========================================================
+   WEBHOOK BUY
+========================================================= */
 
-        alert("Masukkan nama pekerja yang jual.");
+async function sendBuyWebhook() {
 
-        return;
+    if (!transactions.length) {
 
-    }
-
-
-    if(!citizen){
-
-        alert("Masukkan nama warga yang beli.");
-
-        return;
-
-    }
-
-
-    if(!qty || qty < 1){
-
-        alert("Quantity tidak sah.");
-
-        return;
-
-    }
-
-
-    const soldToday =
-        getDailySold(item);
-
-
-    if(soldToday + qty > 5){
-
-        alert(
-            `❌ Limit penjualan ${item} ialah 5 unit/day.`
-        );
+        alert("Tiada data untuk dihantar.");
 
         return;
 
@@ -1444,299 +1477,247 @@ async function sendSellWebhook(){
 
 
     const latestBuy =
-        [...transactions]
-            .reverse()
-            .find(
-                t =>
-                    t.type === "BUY" &&
-                    t.item === item
-            );
-
-
-    const buyPrice =
-        latestBuy
-            ? Number(latestBuy.price)
-            : 0;
-
-
-    const total =
-        price * qty;
-
-
-    const cost =
-        buyPrice * qty;
-
-
-    const profit =
-        total - cost;
-
-
-    await sendWebhook(
-        SELL_WEBHOOK,
-        {
-
-            title:"💰 DATA PENJUALAN ALAT",
-
-            color:5763719,
-
-            fields:[
-
-                {
-                    name:"👨‍🔧 Pekerja Yang Jual",
-                    value:worker,
-                    inline:true
-                },
-
-                {
-                    name:"👤 Warga Yang Beli",
-                    value:citizen,
-                    inline:true
-                },
-
-                {
-                    name:"📦 Alat",
-                    value:item,
-                    inline:true
-                },
-
-                {
-                    name:"🔢 Quantity",
-                    value:String(qty),
-                    inline:true
-                },
-
-                {
-                    name:"💵 Harga Jual",
-                    value:"$" + money(price),
-                    inline:true
-                },
-
-                {
-                    name:"💵 Modal",
-                    value:"$" + money(buyPrice),
-                    inline:true
-                },
-
-                {
-                    name:"💰 Total Jual",
-                    value:"$" + money(total),
-                    inline:true
-                },
-
-                {
-                    name:"📈 Profit",
-                    value:"$" + money(profit),
-                    inline:true
-                }
-
-            ]
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   SEND SINGLE BUY
-========================================================= */
-
-async function sendSingleBuy(id){
-
-    const transaction =
         transactions.find(
-            t => t.id === id
+            transaction =>
+                transaction.type === "buy"
         );
 
 
-    if(!transaction){
+    if (!latestBuy) {
+
+        alert("Tiada rekod pembelian.");
 
         return;
 
     }
+
+
+    const details =
+        latestBuy.items
+            .map(item =>
+                `• ${item.name} × ${item.quantity} — $${money(item.subtotal)}`
+            )
+            .join("\n");
+
+
+    const payload = {
+
+        username: "RK Garage",
+
+        embeds: [
+
+            {
+
+                title: "🛒 DATA PEMBELIAN ALAT",
+
+                color: 10181046,
+
+                fields: [
+
+                    {
+                        name: "👨‍🔧 Nama Pekerja",
+                        value: latestBuy.worker,
+                        inline: true
+                    },
+
+                    {
+                        name: "📅 Tarikh",
+                        value:
+                            latestBuy.date +
+                            " " +
+                            latestBuy.time,
+                        inline: true
+                    },
+
+                    {
+                        name: "📦 Alat Dibeli",
+                        value:
+                            details ||
+                            "-"
+                    },
+
+                    {
+                        name: "💵 TOTAL PEMBELIAN",
+                        value:
+                            "$" +
+                            money(latestBuy.total)
+                    }
+
+                ],
+
+                timestamp:
+                    new Date().toISOString()
+
+            }
+
+        ]
+
+    };
 
 
     await sendWebhook(
         BUY_WEBHOOK,
-        {
-
-            title:"🛒 DATA BELI ALAT",
-
-            color:10181046,
-
-            fields:[
-
-                {
-                    name:"👨‍🔧 Pekerja",
-                    value:transaction.worker,
-                    inline:true
-                },
-
-                {
-                    name:"📦 Alat",
-                    value:transaction.item,
-                    inline:true
-                },
-
-                {
-                    name:"🔢 Quantity",
-                    value:String(transaction.qty),
-                    inline:true
-                },
-
-                {
-                    name:"💵 Harga Unit",
-                    value:"$" + money(transaction.price),
-                    inline:true
-                },
-
-                {
-                    name:"💰 Total Beli",
-                    value:"$" + money(transaction.total),
-                    inline:true
-                }
-
-            ]
-
-        }
+        payload,
+        "Data pembelian berjaya dihantar ke Discord."
     );
 
 }
 
 
 /* =========================================================
-   SEND SINGLE SELL
+   WEBHOOK SELL
 ========================================================= */
 
-async function sendSingleSell(id){
+async function sendSellWebhook() {
 
-    const transaction =
-        transactions.find(
-            t => t.id === id
-        );
+    if (!transactions.length) {
 
-
-    if(!transaction){
+        alert("Tiada data untuk dihantar.");
 
         return;
 
     }
 
 
+    const latestSell =
+        transactions.find(
+            transaction =>
+                transaction.type === "sell"
+        );
+
+
+    if (!latestSell) {
+
+        alert("Tiada rekod penjualan.");
+
+        return;
+
+    }
+
+
+    const details =
+        latestSell.items
+            .map(item =>
+                `• ${item.name} × ${item.quantity} — $${money(item.subtotal)}`
+            )
+            .join("\n");
+
+
+    const payload = {
+
+        username: "RK Garage",
+
+        embeds: [
+
+            {
+
+                title: "💰 DATA PENJUALAN ALAT",
+
+                color: 3447003,
+
+                fields: [
+
+                    {
+                        name: "👨‍🔧 Nama Pekerja",
+                        value: latestSell.worker,
+                        inline: true
+                    },
+
+                    {
+                        name: "👤 Nama Warga",
+                        value: latestSell.customer,
+                        inline: true
+                    },
+
+                    {
+                        name: "📅 Tarikh",
+                        value:
+                            latestSell.date +
+                            " " +
+                            latestSell.time,
+                        inline: false
+                    },
+
+                    {
+                        name: "📦 Alat Dijual",
+                        value:
+                            details ||
+                            "-"
+                    },
+
+                    {
+                        name: "💵 TOTAL JUAL",
+                        value:
+                            "$" +
+                            money(latestSell.total),
+                        inline: true
+                    },
+
+                    {
+                        name: "📈 PROFIT",
+                        value:
+                            "$" +
+                            money(latestSell.profit),
+                        inline: true
+                    }
+
+                ],
+
+                timestamp:
+                    new Date().toISOString()
+
+            }
+
+        ]
+
+    };
+
+
     await sendWebhook(
         SELL_WEBHOOK,
-        {
-
-            title:"💰 DATA PENJUALAN ALAT",
-
-            color:5763719,
-
-            fields:[
-
-                {
-                    name:"👨‍🔧 Pekerja Yang Jual",
-                    value:transaction.worker,
-                    inline:true
-                },
-
-                {
-                    name:"👤 Warga Yang Beli",
-                    value:transaction.citizen,
-                    inline:true
-                },
-
-                {
-                    name:"📦 Alat",
-                    value:transaction.item,
-                    inline:true
-                },
-
-                {
-                    name:"🔢 Quantity",
-                    value:String(transaction.qty),
-                    inline:true
-                },
-
-                {
-                    name:"💵 Harga Jual",
-                    value:"$" + money(transaction.price),
-                    inline:true
-                },
-
-                {
-                    name:"💵 Modal",
-                    value:"$" + money(transaction.buyPrice || 0),
-                    inline:true
-                },
-
-                {
-                    name:"💰 Total Jual",
-                    value:"$" + money(transaction.total),
-                    inline:true
-                },
-
-                {
-                    name:"📈 Profit",
-                    value:"$" + money(transaction.profit || 0),
-                    inline:true
-                }
-
-            ]
-
-        }
+        payload,
+        "Data penjualan berjaya dihantar ke Discord."
     );
 
 }
 
 
 /* =========================================================
-   GENERIC WEBHOOK
+   SEND WEBHOOK
 ========================================================= */
 
-async function sendWebhook(webhook, embed){
+async function sendWebhook(
+    webhook,
+    payload,
+    successMessage
+) {
 
-    try{
+    try {
 
         const response =
             await fetch(
                 webhook,
                 {
 
-                    method:"POST",
+                    method: "POST",
 
-                    headers:{
+                    headers: {
                         "Content-Type":
                             "application/json"
                     },
 
                     body:
-                        JSON.stringify({
-
-                            username:
-                                "RK Garage Data",
-
-                            embeds:[
-                                {
-                                    ...embed,
-                                    timestamp:
-                                        new Date()
-                                        .toISOString()
-                                }
-                            ]
-
-                        })
+                        JSON.stringify(payload)
 
                 }
             );
 
 
-        if(response.ok){
+        if (response.ok) {
 
-            alert(
-                "✅ Berjaya dihantar ke Discord."
-            );
+            alert("✅ " + successMessage);
 
-        }else{
+        } else {
 
             const error =
                 await response.text();
@@ -1749,7 +1730,7 @@ async function sendWebhook(webhook, embed){
 
         }
 
-    }catch(error){
+    } catch (error) {
 
         console.error(error);
 
@@ -1764,40 +1745,14 @@ async function sendWebhook(webhook, embed){
 
 
 /* =========================================================
-   RESET DATA
+   RENDER ALL
 ========================================================= */
 
-function resetData(){
+function renderAll() {
 
-    const confirmation =
-        confirm(
-            "⚠️ PERHATIAN!\n\n" +
-            "Semua rekod pembelian dan penjualan akan dipadam.\n\n" +
-            "Teruskan?"
-        );
-
-
-    if(!confirmation){
-
-        return;
-
-    }
-
-
-    transactions = [];
-
-    saveData();
-
-    updateDashboard();
+    renderDashboard();
 
     renderTransactions();
-
-    updateDailyLimit();
-
-
-    alert(
-        "✅ Semua data telah direset."
-    );
 
 }
 
@@ -1806,11 +1761,7 @@ function resetData(){
    START
 ========================================================= */
 
-updateDashboard();
-
-renderTransactions();
-
-updateDailyLimit();
+renderAll();
 
 </script>
 
