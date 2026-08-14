@@ -6,10 +6,7 @@
 
 <title>RK Garage - Data Alat</title>
 
-<link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 * {
@@ -282,7 +279,7 @@ button:hover {
 
 .actions {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 10px;
     margin-top: 20px;
 }
@@ -307,10 +304,6 @@ button:hover {
     }
 
     .quantity-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .actions {
         grid-template-columns: 1fr;
     }
 }
@@ -712,17 +705,16 @@ button:hover {
 
 <script>
 
-/// ================================
-// DISCORD WEBHOOK
-// ================================
+/* =========================================================
+   DISCORD WEBHOOK
+   ========================================================= */
 
-// DATA JUAL
 const WEBHOOK_JUAL =
 "https://canary.discord.com/api/webhooks/1537765528624566272/Yx7H-knrSrnzNW8BHLjQi18XoNzuDvjZAXPGhDC6YOCkCstVSx_Af1M8Vrg68QDyxp2z";
 
-// DATA BELI ALAT
 const WEBHOOK_BELI =
 "https://canary.discord.com/api/webhooks/1537768039527747665/nZFB9lHkuQcg_pNwa19KfFcxo5Nh7rMASIj7mGoQptbj8XLIAMo1fS0I0-tqDQ2zhjsm";
+
 
 /* =========================================================
    HARGA
@@ -731,11 +723,8 @@ const WEBHOOK_BELI =
 const BUY_PRICES = {
 
     "ADVANCE REPAIR KIT": 10000,
-
     "REPAIR KIT": 9000,
-
     "TIRE KIT": 9000,
-
     "CLEANING KIT": 2500
 
 };
@@ -744,9 +733,7 @@ const BUY_PRICES = {
 const SELL_PRICES = {
 
     "REPAIR KIT": 11000,
-
     "TIRE KIT": 11000,
-
     "CLEANING KIT": 5000
 
 };
@@ -987,7 +974,6 @@ function addSale() {
 
         {
             name: "REPAIR KIT",
-
             quantity: Number(
                 document.getElementById("sellRepair").value
             )
@@ -995,7 +981,6 @@ function addSale() {
 
         {
             name: "TIRE KIT",
-
             quantity: Number(
                 document.getElementById("sellTire").value
             )
@@ -1003,7 +988,6 @@ function addSale() {
 
         {
             name: "CLEANING KIT",
-
             quantity: Number(
                 document.getElementById("sellCleaning").value
             )
@@ -1161,11 +1145,8 @@ function addSale() {
 function clearBuyForm() {
 
     document.getElementById("buyAdvance").value = 0;
-
     document.getElementById("buyRepair").value = 0;
-
     document.getElementById("buyTire").value = 0;
-
     document.getElementById("buyCleaning").value = 0;
 
 }
@@ -1178,11 +1159,8 @@ function clearBuyForm() {
 function clearSellForm() {
 
     document.getElementById("sellRepair").value = 0;
-
     document.getElementById("sellTire").value = 0;
-
     document.getElementById("sellCleaning").value = 0;
-
     document.getElementById("customerName").value = "";
 
 }
@@ -1195,9 +1173,7 @@ function clearSellForm() {
 function renderDashboard() {
 
     let totalBuy = 0;
-
     let totalSell = 0;
-
     let totalProfit = 0;
 
 
@@ -1509,7 +1485,7 @@ async function sendBuyWebhook() {
 
                     {
                         name: "👨‍🔧 Nama Pekerja",
-                        value: latestBuy.worker,
+                        value: String(latestBuy.worker),
                         inline: true
                     },
 
@@ -1549,7 +1525,7 @@ async function sendBuyWebhook() {
 
 
     await sendWebhook(
-        BUY_WEBHOOK,
+        WEBHOOK_BELI,
         payload,
         "Data pembelian berjaya dihantar ke Discord."
     );
@@ -1612,13 +1588,13 @@ async function sendSellWebhook() {
 
                     {
                         name: "👨‍🔧 Nama Pekerja",
-                        value: latestSell.worker,
+                        value: String(latestSell.worker),
                         inline: true
                     },
 
                     {
                         name: "👤 Nama Warga",
-                        value: latestSell.customer,
+                        value: String(latestSell.customer),
                         inline: true
                     },
 
@@ -1667,7 +1643,7 @@ async function sendSellWebhook() {
 
 
     await sendWebhook(
-        SELL_WEBHOOK,
+        WEBHOOK_JUAL,
         payload,
         "Data penjualan berjaya dihantar ke Discord."
     );
@@ -1687,49 +1663,65 @@ async function sendWebhook(
 
     try {
 
+        console.log("Menghantar data ke Discord...");
+
         const response =
             await fetch(
                 webhook,
                 {
-
                     method: "POST",
 
                     headers: {
-                        "Content-Type":
-                            "application/json"
+                        "Content-Type": "application/json"
                     },
 
-                    body:
-                        JSON.stringify(payload)
-
+                    body: JSON.stringify(payload)
                 }
             );
 
 
+        console.log(
+            "Discord HTTP Status:",
+            response.status
+        );
+
+
         if (response.ok) {
 
-            alert("✅ " + successMessage);
+            alert(
+                "✅ " +
+                successMessage
+            );
 
         } else {
 
             const error =
                 await response.text();
 
-            console.error(error);
+            console.error(
+                "Discord Error:",
+                error
+            );
 
             alert(
-                "❌ Gagal hantar ke Discord."
+                "❌ Gagal hantar ke Discord.\n" +
+                "HTTP Status: " +
+                response.status
             );
 
         }
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "Webhook Error:",
+            error
+        );
 
         alert(
-            "❌ Error webhook: " +
-            error.message
+            "❌ Tidak dapat hantar ke Discord.\n\n" +
+            "Kemungkinan GitHub Pages terkena CORS.\n" +
+            "Buka F12 → Console untuk lihat error."
         );
 
     }
