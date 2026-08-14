@@ -1,235 +1,367 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>RK Garage - Data Jual & Beli</title>
+<title>RK Garage - Data Recap</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    min-height: 100vh;
-    padding: 30px 15px;
-    color: white;
+body{
+    font-family:'Poppins',sans-serif;
+    min-height:100vh;
+    padding:30px 15px;
+    color:white;
+
     background:
-        radial-gradient(circle at top, #3b0764, #14051f 45%, #07070c);
+        radial-gradient(
+            circle at top,
+            #3b1765 0%,
+            #241044 40%,
+            #0b0712 100%
+        );
 }
 
-.container {
-    width: 100%;
-    max-width: 1100px;
-    margin: auto;
+.container{
+    max-width:1200px;
+    margin:auto;
 }
 
-.header {
-    text-align: center;
-    margin-bottom: 30px;
+.header{
+    text-align:center;
+    margin-bottom:30px;
 }
 
-.header h1 {
-    font-size: 42px;
-    color: #f5d0fe;
-    margin-bottom: 8px;
+.logo{
+    width:180px;
+    max-width:65%;
+    height:auto;
+    display:block;
+    margin:0 auto 10px;
+    object-fit:contain;
+
+    filter:
+        drop-shadow(0 0 15px rgba(192,132,252,.6))
+        drop-shadow(0 0 35px rgba(168,85,247,.4));
 }
 
-.header p {
-    color: #d8b4fe;
+.header h1{
+    font-size:48px;
+    font-weight:700;
+    color:#f5d0fe;
+
+    text-shadow:
+        0 0 20px rgba(192,132,252,.5);
 }
 
-.tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+.header p{
+    color:#d8b4fe;
+    margin-top:6px;
 }
 
-.tab-btn {
-    flex: 1;
-    padding: 15px;
-    border: none;
-    border-radius: 12px;
-    background: #24132f;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 15px;
+.card{
+    background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+    padding:22px;
+    margin-bottom:20px;
+    backdrop-filter:blur(12px);
 }
 
-.tab-btn.active {
-    background: linear-gradient(135deg, #9333ea, #c084fc);
+.card h2{
+    color:#f5d0fe;
+    margin-bottom:18px;
+    font-size:20px;
 }
 
-.panel {
-    display: none;
-}
-
-.panel.active {
-    display: block;
-}
-
-.box {
-    background: rgba(255,255,255,.06);
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 18px;
-    padding: 20px;
-    margin-bottom: 20px;
-    backdrop-filter: blur(10px);
-}
-
-.box h2 {
-    color: #f5d0fe;
-    margin-bottom: 15px;
-}
-
-.form {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 12px;
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:14px;
 }
 
 input,
-select {
-    width: 100%;
-    padding: 13px;
-    border: none;
-    border-radius: 10px;
-    background: #1b1328;
-    color: white;
-    outline: none;
+select{
+    width:100%;
+    padding:13px 15px;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    background:#1a1028;
+    color:white;
+    border:1px solid rgba(255,255,255,.08);
 }
 
-select option {
-    background: #1b1328;
+input::placeholder{
+    color:#958aa2;
 }
 
-button {
-    border: none;
-    border-radius: 10px;
-    padding: 13px 18px;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
+input:focus,
+select:focus{
+    border-color:#a855f7;
+    box-shadow:0 0 0 2px rgba(168,85,247,.15);
 }
 
-.add-btn {
-    background: linear-gradient(135deg, #9333ea, #c084fc);
+select option{
+    background:#1a1028;
+    color:white;
 }
 
-.discord-btn {
-    background: #5865f2;
+button{
+    border:none;
+    outline:none;
+    cursor:pointer;
+
+    padding:12px 18px;
+
+    border-radius:12px;
+
+    color:white;
+    font-weight:600;
+
+    background:
+        linear-gradient(
+            135deg,
+            #9333ea,
+            #c084fc
+        );
+
+    transition:.2s;
 }
 
-.reset-btn {
-    background: #dc2626;
+button:hover{
+    transform:translateY(-1px);
+    opacity:.92;
 }
 
-.item-list {
-    margin-top: 20px;
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
 }
 
-.item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    padding: 14px;
-    margin-bottom: 8px;
-    border-radius: 10px;
-    background: rgba(255,255,255,.05);
+.product-box{
+    display:grid;
+    grid-template-columns:1fr 160px 120px;
+    gap:10px;
+    align-items:center;
+    margin-bottom:12px;
 }
 
-.item-info {
-    flex: 1;
+.price{
+    padding:12px;
+    border-radius:10px;
+    background:#130b1d;
+    color:#d8b4fe;
+    text-align:center;
+    font-size:14px;
 }
 
-.item-name {
-    font-weight: bold;
+.quantity{
+    display:flex;
+    gap:8px;
 }
 
-.item-price {
-    color: #d8b4fe;
-    font-size: 13px;
-    margin-top: 3px;
+.quantity input{
+    min-width:0;
 }
 
-.delete-btn {
-    background: #dc2626;
-    padding: 8px 12px;
-    font-size: 12px;
+.btn-green{
+    background:
+        linear-gradient(
+            135deg,
+            #15803d,
+            #4ade80
+        );
 }
 
-.total-box {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin-top: 20px;
+.btn-blue{
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #60a5fa
+        );
 }
 
-.total {
-    font-size: 32px;
-    font-weight: bold;
-    color: #f5d0fe;
+.btn-red{
+    background:
+        linear-gradient(
+            135deg,
+            #b91c1c,
+            #ef4444
+        );
 }
 
-.actions {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+.btn-purple{
+    background:
+        linear-gradient(
+            135deg,
+            #7e22ce,
+            #c084fc
+        );
 }
 
-.empty {
-    text-align: center;
-    color: #999;
-    padding: 20px;
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
 }
 
-.status {
-    margin-top: 15px;
-    padding: 10px;
-    border-radius: 8px;
-    display: none;
+.stat{
+    background:rgba(255,255,255,.05);
+    border-radius:16px;
+    padding:20px;
+    text-align:center;
+    border:1px solid rgba(255,255,255,.07);
 }
 
-.status.success {
-    display: block;
-    background: rgba(34,197,94,.15);
-    color: #86efac;
+.stat-title{
+    color:#c4b5fd;
+    font-size:13px;
+    margin-bottom:6px;
 }
 
-.status.error {
-    display: block;
-    background: rgba(220,38,38,.15);
-    color: #fca5a5;
+.stat-value{
+    font-size:28px;
+    font-weight:700;
 }
 
-@media(max-width:600px) {
-    .header h1 {
-        font-size: 32px;
+.profit{
+    color:#4ade80;
+}
+
+.transaction{
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:14px;
+    padding:15px;
+    margin-bottom:10px;
+}
+
+.transaction-top{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.transaction-title{
+    font-weight:700;
+    color:#f5d0fe;
+}
+
+.transaction-date{
+    font-size:12px;
+    color:#958aa2;
+}
+
+.transaction-info{
+    margin-top:8px;
+    font-size:13px;
+    color:#ddd6fe;
+}
+
+.transaction-actions{
+    margin-top:12px;
+    display:flex;
+    gap:8px;
+}
+
+.transaction-actions button{
+    padding:7px 12px;
+    font-size:12px;
+}
+
+.limit-info{
+    color:#c4b5fd;
+    font-size:12px;
+    margin-top:5px;
+}
+
+.status{
+    font-size:12px;
+    margin-top:4px;
+}
+
+.available{
+    color:#4ade80;
+}
+
+.unavailable{
+    color:#f87171;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:15px;
+}
+
+.search{
+    margin-bottom:15px;
+}
+
+.empty{
+    text-align:center;
+    color:#958aa2;
+    padding:25px;
+}
+
+.notice{
+    background:rgba(168,85,247,.1);
+    border:1px solid rgba(168,85,247,.2);
+    color:#ddd6fe;
+    border-radius:12px;
+    padding:13px;
+    font-size:13px;
+    margin-top:15px;
+}
+
+@media(max-width:800px){
+
+    .grid{
+        grid-template-columns:1fr;
     }
 
-    .tabs {
-        flex-direction: column;
+    .stats{
+        grid-template-columns:1fr;
     }
 
-    .total-box {
-        flex-direction: column;
-        align-items: stretch;
+    .product-box{
+        grid-template-columns:1fr;
     }
 
-    .actions {
-        flex-direction: column;
+    .header h1{
+        font-size:38px;
+    }
+}
+
+@media(max-width:500px){
+
+    body{
+        padding:20px 10px;
     }
 
-    .actions button {
-        width: 100%;
+    .card{
+        padding:16px;
+    }
+
+    .actions{
+        flex-direction:column;
+    }
+
+    .actions button{
+        width:100%;
     }
 }
 </style>
@@ -239,218 +371,208 @@ button {
 
 <div class="container">
 
+    <!-- HEADER -->
     <div class="header">
+
+        <img
+            src="./RK_Garage.png"
+            alt="RK Garage Logo"
+            class="logo"
+            onerror="this.style.display='none';"
+        >
+
         <h1>RK GARAGE</h1>
-        <p>Data Penjualan & Pembelian Alat</p>
-    </div>
 
-    <!-- TAB -->
-    <div class="tabs">
-        <button
-            class="tab-btn active"
-            onclick="showTab('jual', this)">
-            DATA JUAL
-        </button>
+        <p>Data Recap Pembelian Alat & Penjualan</p>
 
-        <button
-            class="tab-btn"
-            onclick="showTab('beli', this)">
-            DATA BELI ALAT
-        </button>
     </div>
 
 
-    <!-- ========================= -->
-    <!-- DATA JUAL -->
-    <!-- ========================= -->
+    <!-- DASHBOARD -->
+    <div class="card">
 
-    <div id="jual" class="panel active">
+        <h2>📊 Dashboard</h2>
 
-        <div class="box">
+        <div class="stats">
 
-            <h2>Data Penjualan</h2>
+            <div class="stat">
+                <div class="stat-title">
+                    TOTAL PEMBELIAN
+                </div>
 
-            <div class="form">
-
-                <input
-                    type="text"
-                    id="jualCustomer"
-                    placeholder="Nama Warga">
-
-                <input
-                    type="text"
-                    id="jualSeller"
-                    placeholder="Nama Penjual / Mekanik">
-
-                <input
-                    type="text"
-                    id="jualPlate"
-                    placeholder="Plat Kendaraan">
-
-                <select id="jualItem"></select>
-
-                <input
-                    type="number"
-                    id="jualQty"
-                    value="1"
-                    min="1"
-                    placeholder="Jumlah">
-
+                <div
+                    class="stat-value"
+                    id="totalBuy"
+                >
+                    $0
+                </div>
             </div>
 
-            <br>
+
+            <div class="stat">
+                <div class="stat-title">
+                    TOTAL PENJUALAN
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="totalSell"
+                >
+                    $0
+                </div>
+            </div>
+
+
+            <div class="stat">
+                <div class="stat-title">
+                    TOTAL PROFIT
+                </div>
+
+                <div
+                    class="stat-value profit"
+                    id="totalProfit"
+                >
+                    $0
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- PEMBELIAN -->
+    <div class="card">
+
+        <h2>📦 Data Pembelian Alat</h2>
+
+        <div id="buyProducts"></div>
+
+        <div class="actions">
 
             <button
-                class="add-btn"
-                onclick="addJual()">
-                + Tambah Barang
+                class="btn-blue"
+                onclick="sendBuyToDiscord()"
+            >
+                📤 Kirim Data Beli
+            </button>
+
+            <button
+                class="btn-purple"
+                onclick="saveBuy()"
+            >
+                💾 Simpan Pembelian
             </button>
 
         </div>
 
-
-        <div class="box">
-
-            <h2>Senarai Penjualan</h2>
-
-            <div
-                id="jualList"
-                class="item-list">
-            </div>
-
-            <div class="total-box">
-
-                <div>
-                    <div>Total Penjualan</div>
-
-                    <div
-                        class="total"
-                        id="jualTotal">
-                        $0
-                    </div>
-                </div>
-
-                <div class="actions">
-
-                    <button
-                        class="discord-btn"
-                        onclick="sendJualDiscord()">
-                        💬 Send Discord
-                    </button>
-
-                    <button
-                        class="reset-btn"
-                        onclick="resetJual()">
-                        Reset
-                    </button>
-
-                </div>
-
-            </div>
-
-            <div
-                id="jualStatus"
-                class="status">
-            </div>
-
-        </div>
-
     </div>
 
 
-    <!-- ========================= -->
-    <!-- DATA BELI -->
-    <!-- ========================= -->
+    <!-- PENJUALAN -->
+    <div class="card">
 
-    <div id="beli" class="panel">
+        <h2>💰 Data Penjualan</h2>
 
-        <div class="box">
+        <div id="sellProducts"></div>
 
-            <h2>Data Pembelian Alat</h2>
-
-            <div class="form">
-
-                <input
-                    type="text"
-                    id="beliSupplier"
-                    placeholder="Nama Supplier">
-
-                <input
-                    type="text"
-                    id="beliWorker"
-                    placeholder="Nama Pembeli">
-
-                <select id="beliItem"></select>
-
-                <input
-                    type="number"
-                    id="beliQty"
-                    value="1"
-                    min="1"
-                    placeholder="Jumlah">
-
-            </div>
-
-            <br>
+        <div class="actions">
 
             <button
-                class="add-btn"
-                onclick="addBeli()">
-                + Tambah Alat
+                class="btn-green"
+                onclick="saveSell()"
+            >
+                💾 Simpan Penjualan
+            </button>
+
+            <button
+                class="btn-blue"
+                onclick="sendSellToDiscord()"
+            >
+                📤 Kirim Data Jual
             </button>
 
         </div>
 
+        <div class="notice">
+            ⚠️ Limit penjualan adalah
+            <b>5 unit setiap item sehari</b>.
+        </div>
 
-        <div class="box">
+    </div>
 
-            <h2>Senarai Pembelian</h2>
 
-            <div
-                id="beliList"
-                class="item-list">
-            </div>
+    <!-- TRANSACTIONS -->
+    <div class="card">
 
-            <div class="total-box">
+        <h2>📋 Rekod Transaksi</h2>
 
-                <div>
+        <input
+            class="search"
+            id="search"
+            type="text"
+            placeholder="🔎 Cari transaksi..."
+            oninput="renderTransactions()"
+        >
 
-                    <div>Total Pembelian</div>
+        <div id="transactions"></div>
 
-                    <div
-                        class="total"
-                        id="beliTotal">
-                        $0
-                    </div>
+        <div class="actions">
 
-                </div>
-
-                <div class="actions">
-
-                    <button
-                        class="discord-btn"
-                        onclick="sendBeliDiscord()">
-                        💬 Send Discord
-                    </button>
-
-                    <button
-                        class="reset-btn"
-                        onclick="resetBeli()">
-                        Reset
-                    </button>
-
-                </div>
-
-            </div>
-
-            <div
-                id="beliStatus"
-                class="status">
-            </div>
+            <button
+                class="btn-red"
+                onclick="clearTransactions()"
+            >
+                🗑 Hapus Semua Rekod
+            </button>
 
         </div>
 
     </div>
+
+
+    <!-- PRICE LIST -->
+    <div class="card">
+
+        <h2>💵 Senarai Harga</h2>
+
+        <div class="transaction">
+
+            <div class="transaction-title">
+                BELI DARI PETINGGI
+            </div>
+
+            <div class="transaction-info">
+                ADVANCE REPAIR KIT — $10,000<br>
+                REPAIR KIT — $9,000<br>
+                TIRE KIT — $9,000<br>
+                CLEANING KIT — $2,500
+            </div>
+
+        </div>
+
+
+        <div class="transaction">
+
+            <div class="transaction-title">
+                JUAL KEPADA WARGA
+            </div>
+
+            <div class="transaction-info">
+                REPAIR KIT — $11,000<br>
+                TIRE KIT — $11,000<br>
+                CLEANING KIT — $5,000
+            </div>
+
+        </div>
+
+        <div class="notice">
+            ADVANCE REPAIR KIT belum mempunyai harga jual,
+            jadi hanya digunakan untuk data pembelian.
+        </div>
+
+    </div>
+
 
 </div>
 
@@ -458,60 +580,65 @@ button {
 <script>
 
 /* =====================================================
-   WEBHOOK
-===================================================== */
+   DISCORD WEBHOOK
+   ===================================================== */
 
-const WEBHOOK_JUAL =
-"https://canary.discord.com/api/webhooks/1537765528624566272/Yx7H-knrSrnzNW8BHLjQi18XoNzuDvjZAXPGhDC6YOCkCstVSx_Af1M8Vrg68QDyxp2z";
-
-
-const WEBHOOK_BELI =
+const BUY_WEBHOOK =
 "https://canary.discord.com/api/webhooks/1537768039527747665/nZFB9lHkuQcg_pNwa19KfFcxo5Nh7rMASIj7mGoQptbj8XLIAMo1fS0I0-tqDQ2zhjsm";
 
 
-/* =====================================================
-   DATA HARGA
-===================================================== */
-
-/*
-   MASUKKAN HARGA ASAL KAU DI SINI.
-
-   FORMAT:
-
-   ["NAMA BARANG", HARGA]
-
-*/
-
-const items = [
-
-    /*
-    CONTOH:
-
-    ["ENGINE", 150000],
-    ["BRAKES", 100000],
-    ["TURBO", 110000],
-
-    GANTIKAN / TAMBAH DENGAN
-    SENARAI HARGA KAU.
-    */
-
-];
+const SELL_WEBHOOK =
+"https://canary.discord.com/api/webhooks/1537765528624566272/Yx7H-knrSrnzNW8BHLjQi18XoNzuDvjZAXPGhDC6YOCkCstVSx_Af1M8Vrg68QDyxp2z";
 
 
 /* =====================================================
-   VARIABLES
-===================================================== */
+   PRODUCT DATA
+   ===================================================== */
 
-let jualData = [];
+const products = {
 
-let beliData = [];
+    "ADVANCE REPAIR KIT": {
+        buy: 10000,
+        sell: null,
+        dailyLimit: null
+    },
+
+    "REPAIR KIT": {
+        buy: 9000,
+        sell: 11000,
+        dailyLimit: 5
+    },
+
+    "TIRE KIT": {
+        buy: 9000,
+        sell: 11000,
+        dailyLimit: 5
+    },
+
+    "CLEANING KIT": {
+        buy: 2500,
+        sell: 5000,
+        dailyLimit: 5
+    }
+
+};
 
 
 /* =====================================================
-   FORMAT MONEY
-===================================================== */
+   LOCAL STORAGE
+   ===================================================== */
 
-function money(value) {
+let transactions =
+    JSON.parse(
+        localStorage.getItem("rkGarageTransactions")
+    ) || [];
+
+
+/* =====================================================
+   MONEY
+   ===================================================== */
+
+function money(value){
 
     return Number(value).toLocaleString("en-US");
 
@@ -519,516 +646,829 @@ function money(value) {
 
 
 /* =====================================================
-   TAB
-===================================================== */
+   TODAY
+   ===================================================== */
 
-function showTab(tab, button) {
+function today(){
 
-    document
-        .querySelectorAll(".panel")
-        .forEach(panel => {
+    const d = new Date();
 
-            panel.classList.remove("active");
-
-        });
-
-
-    document
-        .querySelectorAll(".tab-btn")
-        .forEach(btn => {
-
-            btn.classList.remove("active");
-
-        });
-
-
-    document
-        .getElementById(tab)
-        .classList.add("active");
-
-
-    button.classList.add("active");
+    return d.toISOString().split("T")[0];
 
 }
 
 
 /* =====================================================
-   LOAD ITEMS
-===================================================== */
+   RENDER BUY
+   ===================================================== */
 
-function loadItems() {
+function renderBuyProducts(){
 
-    const jualSelect =
-        document.getElementById("jualItem");
+    const container =
+        document.getElementById("buyProducts");
 
+    container.innerHTML = "";
 
-    const beliSelect =
-        document.getElementById("beliItem");
+    Object.entries(products).forEach(
+        ([name, product]) => {
 
+            container.innerHTML += `
 
-    jualSelect.innerHTML =
-        '<option value="">-- Pilih Barang --</option>';
+                <div class="product-box">
 
+                    <div>
 
-    beliSelect.innerHTML =
-        '<option value="">-- Pilih Alat --</option>';
+                        <b>${name}</b>
 
+                        <div class="limit-info">
+                            Harga beli:
+                            $${money(product.buy)}
+                        </div>
 
-    items.forEach((item, index) => {
-
-        const optionJual =
-            document.createElement("option");
-
-        optionJual.value = index;
-
-        optionJual.textContent =
-            `${item[0]} - $${money(item[1])}`;
-
-        jualSelect.appendChild(optionJual);
-
-
-        const optionBeli =
-            document.createElement("option");
-
-        optionBeli.value = index;
-
-        optionBeli.textContent =
-            `${item[0]} - $${money(item[1])}`;
-
-        beliSelect.appendChild(optionBeli);
-
-    });
-
-}
-
-
-/* =====================================================
-   ADD JUAL
-===================================================== */
-
-function addJual() {
-
-    const select =
-        document.getElementById("jualItem");
-
-    const qty =
-        Number(
-            document.getElementById("jualQty").value
-        );
-
-
-    if (
-        select.value === "" ||
-        qty <= 0
-    ) {
-
-        alert("Pilih barang dan jumlah dahulu.");
-
-        return;
-
-    }
-
-
-    const item =
-        items[Number(select.value)];
-
-
-    jualData.push({
-
-        name: item[0],
-
-        price: Number(item[1]),
-
-        qty: qty,
-
-        total:
-            Number(item[1]) * qty
-
-    });
-
-
-    renderJual();
-
-}
-
-
-/* =====================================================
-   ADD BELI
-===================================================== */
-
-function addBeli() {
-
-    const select =
-        document.getElementById("beliItem");
-
-    const qty =
-        Number(
-            document.getElementById("beliQty").value
-        );
-
-
-    if (
-        select.value === "" ||
-        qty <= 0
-    ) {
-
-        alert("Pilih alat dan jumlah dahulu.");
-
-        return;
-
-    }
-
-
-    const item =
-        items[Number(select.value)];
-
-
-    beliData.push({
-
-        name: item[0],
-
-        price: Number(item[1]),
-
-        qty: qty,
-
-        total:
-            Number(item[1]) * qty
-
-    });
-
-
-    renderBeli();
-
-}
-
-
-/* =====================================================
-   RENDER JUAL
-===================================================== */
-
-function renderJual() {
-
-    const list =
-        document.getElementById("jualList");
-
-
-    if (jualData.length === 0) {
-
-        list.innerHTML =
-            '<div class="empty">Belum ada data penjualan.</div>';
-
-        document.getElementById("jualTotal")
-            .innerText = "$0";
-
-        return;
-
-    }
-
-
-    let html = "";
-
-    let total = 0;
-
-
-    jualData.forEach((item, index) => {
-
-        total += item.total;
-
-
-        html += `
-
-            <div class="item">
-
-                <div class="item-info">
-
-                    <div class="item-name">
-                        ${item.name}
                     </div>
 
-                    <div class="item-price">
-                        $${money(item.price)}
-                        × ${item.qty}
-                        =
-                        $${money(item.total)}
+                    <div class="price">
+                        $${money(product.buy)}
+                    </div>
+
+                    <div class="quantity">
+
+                        <input
+                            type="number"
+                            min="0"
+                            value="0"
+                            id="buy-${name}"
+                            placeholder="Qty"
+                        >
+
                     </div>
 
                 </div>
 
-                <button
-                    class="delete-btn"
-                    onclick="removeJual(${index})">
-                    Hapus
-                </button>
+            `;
 
-            </div>
-
-        `;
-
-    });
-
-
-    list.innerHTML = html;
-
-
-    document.getElementById("jualTotal")
-        .innerText =
-        "$" + money(total);
-
-}
-
-
-/* =====================================================
-   RENDER BELI
-===================================================== */
-
-function renderBeli() {
-
-    const list =
-        document.getElementById("beliList");
-
-
-    if (beliData.length === 0) {
-
-        list.innerHTML =
-            '<div class="empty">Belum ada data pembelian.</div>';
-
-        document.getElementById("beliTotal")
-            .innerText = "$0";
-
-        return;
-
-    }
-
-
-    let html = "";
-
-    let total = 0;
-
-
-    beliData.forEach((item, index) => {
-
-        total += item.total;
-
-
-        html += `
-
-            <div class="item">
-
-                <div class="item-info">
-
-                    <div class="item-name">
-                        ${item.name}
-                    </div>
-
-                    <div class="item-price">
-                        $${money(item.price)}
-                        × ${item.qty}
-                        =
-                        $${money(item.total)}
-                    </div>
-
-                </div>
-
-                <button
-                    class="delete-btn"
-                    onclick="removeBeli(${index})">
-                    Hapus
-                </button>
-
-            </div>
-
-        `;
-
-    });
-
-
-    list.innerHTML = html;
-
-
-    document.getElementById("beliTotal")
-        .innerText =
-        "$" + money(total);
-
-}
-
-
-/* =====================================================
-   REMOVE
-===================================================== */
-
-function removeJual(index) {
-
-    jualData.splice(index, 1);
-
-    renderJual();
-
-}
-
-
-function removeBeli(index) {
-
-    beliData.splice(index, 1);
-
-    renderBeli();
-
-}
-
-
-/* =====================================================
-   SEND JUAL DISCORD
-===================================================== */
-
-async function sendJualDiscord() {
-
-    if (jualData.length === 0) {
-
-        alert("Belum ada data penjualan.");
-
-        return;
-
-    }
-
-
-    const customer =
-        document.getElementById(
-            "jualCustomer"
-        ).value || "-";
-
-
-    const seller =
-        document.getElementById(
-            "jualSeller"
-        ).value || "-";
-
-
-    const plate =
-        document.getElementById(
-            "jualPlate"
-        ).value || "-";
-
-
-    let total = 0;
-
-    let detail = "";
-
-
-    jualData.forEach(item => {
-
-        total += item.total;
-
-
-        detail +=
-            `• ${item.name} × ${item.qty} = $${money(item.total)}\n`;
-
-    });
-
-
-    const payload = {
-
-        username: "RK Garage - Data Jual",
-
-        embeds: [{
-
-            title: "🛒 DATA PENJUALAN",
-
-            color: 10181046,
-
-            fields: [
-
-                {
-                    name: "👤 Nama Warga",
-                    value: customer,
-                    inline: true
-                },
-
-                {
-                    name: "👨‍🔧 Penjual",
-                    value: seller,
-                    inline: true
-                },
-
-                {
-                    name: "🚗 Plat",
-                    value: plate,
-                    inline: true
-                },
-
-                {
-                    name: "📦 Barang",
-                    value:
-                        "```" +
-                        detail +
-                        "```",
-                    inline: false
-                },
-
-                {
-                    name: "💰 TOTAL",
-                    value:
-                        "$" + money(total),
-                    inline: false
-                }
-
-            ],
-
-            timestamp:
-                new Date().toISOString()
-
-        }]
-
-    };
-
-
-    await sendWebhook(
-        WEBHOOK_JUAL,
-        payload,
-        "jualStatus"
+        }
     );
 
 }
 
 
 /* =====================================================
-   SEND BELI DISCORD
-===================================================== */
+   RENDER SELL
+   ===================================================== */
 
-async function sendBeliDiscord() {
+function renderSellProducts(){
 
-    if (beliData.length === 0) {
+    const container =
+        document.getElementById("sellProducts");
 
-        alert("Belum ada data pembelian.");
+    container.innerHTML = "";
+
+    Object.entries(products).forEach(
+        ([name, product]) => {
+
+            if(product.sell === null){
+
+                container.innerHTML += `
+
+                    <div class="product-box">
+
+                        <div>
+
+                            <b>${name}</b>
+
+                            <div class="status unavailable">
+                                ❌ Belum ada harga jual
+                            </div>
+
+                        </div>
+
+                        <div class="price">
+                            -
+                        </div>
+
+                        <div>
+                            <input
+                                type="number"
+                                disabled
+                                placeholder="Tidak tersedia"
+                            >
+                        </div>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            const soldToday =
+                getSoldToday(name);
+
+            const remaining =
+                product.dailyLimit - soldToday;
+
+
+            container.innerHTML += `
+
+                <div class="product-box">
+
+                    <div>
+
+                        <b>${name}</b>
+
+                        <div class="limit-info">
+                            Harga jual:
+                            $${money(product.sell)}
+                        </div>
+
+                        <div class="status ${
+                            remaining > 0
+                            ? "available"
+                            : "unavailable"
+                        }">
+
+                            ${
+                                remaining > 0
+                                ? "✅ Sisa limit: " + remaining
+                                : "❌ Limit hari ini habis"
+                            }
+
+                        </div>
+
+                    </div>
+
+                    <div class="price">
+
+                        $${money(product.sell)}
+
+                    </div>
+
+                    <div>
+
+                        <input
+                            type="number"
+                            min="0"
+                            max="${Math.max(remaining,0)}"
+                            value="0"
+                            id="sell-${name}"
+                            ${
+                                remaining <= 0
+                                ? "disabled"
+                                : ""
+                            }
+                        >
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   GET SOLD TODAY
+   ===================================================== */
+
+function getSoldToday(name){
+
+    let total = 0;
+
+    transactions.forEach(
+        transaction => {
+
+            if(
+                transaction.type === "sell" &&
+                transaction.date === today()
+            ){
+
+                transaction.items.forEach(
+                    item => {
+
+                        if(item.name === name){
+
+                            total += item.qty;
+
+                        }
+
+                    }
+                );
+
+            }
+
+        }
+    );
+
+    return total;
+
+}
+
+
+/* =====================================================
+   SAVE BUY
+   ===================================================== */
+
+function saveBuy(){
+
+    const items = [];
+
+    let total = 0;
+
+
+    Object.entries(products).forEach(
+        ([name, product]) => {
+
+            const input =
+                document.getElementById(
+                    `buy-${name}`
+                );
+
+            const qty =
+                Number(input.value) || 0;
+
+
+            if(qty > 0){
+
+                const subtotal =
+                    product.buy * qty;
+
+                items.push({
+
+                    name:name,
+
+                    qty:qty,
+
+                    price:product.buy,
+
+                    subtotal:subtotal
+
+                });
+
+                total += subtotal;
+
+            }
+
+        }
+    );
+
+
+    if(items.length === 0){
+
+        alert("Masukkan quantity pembelian dahulu.");
 
         return;
 
     }
 
 
-    const supplier =
-        document.getElementById(
-            "beliSupplier"
-        ).value || "-";
+    transactions.unshift({
+
+        id:Date.now(),
+
+        type:"buy",
+
+        date:today(),
+
+        items:items,
+
+        total:total
+
+    });
 
 
-    const worker =
+    saveStorage();
+
+    resetBuyInputs();
+
+    renderAll();
+
+    alert(
+        "✅ Data pembelian berjaya disimpan."
+    );
+
+}
+
+
+/* =====================================================
+   SAVE SELL
+   ===================================================== */
+
+function saveSell(){
+
+    const items = [];
+
+    let total = 0;
+
+
+    Object.entries(products).forEach(
+        ([name, product]) => {
+
+            if(product.sell === null){
+
+                return;
+
+            }
+
+
+            const input =
+                document.getElementById(
+                    `sell-${name}`
+                );
+
+            const qty =
+                Number(input.value) || 0;
+
+
+            if(qty > 0){
+
+                const soldToday =
+                    getSoldToday(name);
+
+
+                if(
+                    soldToday + qty >
+                    product.dailyLimit
+                ){
+
+                    alert(
+                        `${name} melebihi limit 5 unit sehari.`
+                    );
+
+                    return;
+
+                }
+
+
+                const subtotal =
+                    product.sell * qty;
+
+
+                items.push({
+
+                    name:name,
+
+                    qty:qty,
+
+                    price:product.sell,
+
+                    buyPrice:product.buy,
+
+                    subtotal:subtotal
+
+                });
+
+
+                total += subtotal;
+
+            }
+
+        }
+    );
+
+
+    if(items.length === 0){
+
+        alert("Masukkan quantity penjualan dahulu.");
+
+        return;
+
+    }
+
+
+    transactions.unshift({
+
+        id:Date.now(),
+
+        type:"sell",
+
+        date:today(),
+
+        items:items,
+
+        total:total
+
+    });
+
+
+    saveStorage();
+
+    resetSellInputs();
+
+    renderAll();
+
+    alert(
+        "✅ Data penjualan berjaya disimpan."
+    );
+
+}
+
+
+/* =====================================================
+   RESET INPUT
+   ===================================================== */
+
+function resetBuyInputs(){
+
+    Object.keys(products).forEach(
+        name => {
+
+            const input =
+                document.getElementById(
+                    `buy-${name}`
+                );
+
+            if(input){
+
+                input.value = 0;
+
+            }
+
+        }
+    );
+
+}
+
+
+function resetSellInputs(){
+
+    Object.keys(products).forEach(
+        name => {
+
+            const input =
+                document.getElementById(
+                    `sell-${name}`
+                );
+
+            if(input){
+
+                input.value = 0;
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   STORAGE
+   ===================================================== */
+
+function saveStorage(){
+
+    localStorage.setItem(
+        "rkGarageTransactions",
+        JSON.stringify(transactions)
+    );
+
+}
+
+
+/* =====================================================
+   DASHBOARD
+   ===================================================== */
+
+function updateDashboard(){
+
+    let buyTotal = 0;
+
+    let sellTotal = 0;
+
+
+    transactions.forEach(
+        transaction => {
+
+            if(transaction.type === "buy"){
+
+                buyTotal += transaction.total;
+
+            }
+
+            if(transaction.type === "sell"){
+
+                sellTotal += transaction.total;
+
+            }
+
+        }
+    );
+
+
+    const profit =
+        sellTotal - buyTotal;
+
+
+    document.getElementById(
+        "totalBuy"
+    ).innerText =
+        "$" + money(buyTotal);
+
+
+    document.getElementById(
+        "totalSell"
+    ).innerText =
+        "$" + money(sellTotal);
+
+
+    document.getElementById(
+        "totalProfit"
+    ).innerText =
+        "$" + money(profit);
+
+}
+
+
+/* =====================================================
+   RENDER TRANSACTIONS
+   ===================================================== */
+
+function renderTransactions(){
+
+    const container =
         document.getElementById(
-            "beliWorker"
-        ).value || "-";
+            "transactions"
+        );
+
+
+    const search =
+        document.getElementById(
+            "search"
+        ).value
+        .toLowerCase()
+        .trim();
+
+
+    const filtered =
+        transactions.filter(
+            transaction => {
+
+                const text =
+                    JSON.stringify(
+                        transaction
+                    ).toLowerCase();
+
+                return text.includes(search);
+
+            }
+        );
+
+
+    if(filtered.length === 0){
+
+        container.innerHTML = `
+            <div class="empty">
+                Tiada transaksi.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    filtered.forEach(
+        transaction => {
+
+            const isBuy =
+                transaction.type === "buy";
+
+
+            let itemsHTML = "";
+
+
+            transaction.items.forEach(
+                item => {
+
+                    itemsHTML += `
+                        ${item.name}
+                        × ${item.qty}
+                        — $${money(item.subtotal)}
+                        <br>
+                    `;
+
+                }
+            );
+
+
+            container.innerHTML += `
+
+                <div class="transaction">
+
+                    <div class="transaction-top">
+
+                        <div class="transaction-title">
+
+                            ${
+                                isBuy
+                                ? "📦 PEMBELIAN"
+                                : "💰 PENJUALAN"
+                            }
+
+                        </div>
+
+                        <div class="transaction-date">
+
+                            ${transaction.date}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="transaction-info">
+
+                        ${itemsHTML}
+
+                        <br>
+
+                        <b>
+                            TOTAL:
+                            $${money(transaction.total)}
+                        </b>
+
+                    </div>
+
+
+                    <div class="transaction-actions">
+
+                        <button
+                            class="btn-red"
+                            onclick="deleteTransaction(${transaction.id})"
+                        >
+                            🗑 Delete
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   DELETE
+   ===================================================== */
+
+function deleteTransaction(id){
+
+    if(
+        !confirm(
+            "Hapus transaksi ini?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    transactions =
+        transactions.filter(
+            transaction =>
+                transaction.id !== id
+        );
+
+
+    saveStorage();
+
+    renderAll();
+
+}
+
+
+/* =====================================================
+   CLEAR
+   ===================================================== */
+
+function clearTransactions(){
+
+    if(transactions.length === 0){
+
+        alert("Tiada rekod untuk dipadam.");
+
+        return;
+
+    }
+
+
+    if(
+        !confirm(
+            "Yakin mahu hapus SEMUA rekod?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    transactions = [];
+
+    saveStorage();
+
+    renderAll();
+
+}
+
+
+/* =====================================================
+   DISCORD FORMAT
+   ===================================================== */
+
+function buildDiscordText(type){
+
+    const relevant =
+        transactions.filter(
+            transaction =>
+                transaction.type === type
+        );
+
+
+    if(relevant.length === 0){
+
+        return null;
+
+    }
 
 
     let total = 0;
 
-    let detail = "";
+    let text = "";
 
 
-    beliData.forEach(item => {
+    relevant.forEach(
+        transaction => {
 
-        total += item.total;
+            text +=
+                `📅 ${transaction.date}\n`;
 
 
-        detail +=
-            `• ${item.name} × ${item.qty} = $${money(item.total)}\n`;
+            transaction.items.forEach(
+                item => {
 
-    });
+                    text +=
+                        `• ${item.name} x${item.qty} — $${money(item.subtotal)}\n`;
+
+                }
+            );
+
+
+            text +=
+                `💰 Total: $${money(transaction.total)}\n\n`;
+
+
+            total += transaction.total;
+
+        }
+    );
+
+
+    return {
+
+        text:text,
+
+        total:total
+
+    };
+
+}
+
+
+/* =====================================================
+   SEND BUY DISCORD
+   ===================================================== */
+
+async function sendBuyToDiscord(){
+
+    const data =
+        buildDiscordText("buy");
+
+
+    if(!data){
+
+        alert(
+            "Belum ada data pembelian."
+        );
+
+        return;
+
+    }
 
 
     const payload = {
@@ -1036,106 +1476,166 @@ async function sendBeliDiscord() {
         username:
             "RK Garage - Data Beli",
 
-        embeds: [{
+        embeds:[
 
-            title:
-                "🔧 DATA PEMBELIAN ALAT",
+            {
 
-            color:
-                10181046,
+                title:
+                    "📦 DATA PEMBELIAN ALAT",
 
-            fields: [
+                color:
+                    10181046,
 
-                {
-                    name:
-                        "🏪 Supplier",
+                description:
+                    data.text,
 
-                    value:
-                        supplier,
+                fields:[
 
-                    inline: true
+                    {
+
+                        name:
+                            "💵 TOTAL PEMBELIAN",
+
+                        value:
+                            "$" +
+                            money(data.total),
+
+                        inline:false
+
+                    }
+
+                ],
+
+                footer:{
+
+                    text:
+                        "RK Garage"
+
                 },
 
-                {
-                    name:
-                        "👨‍🔧 Pembeli",
+                timestamp:
+                    new Date().toISOString()
 
-                    value:
-                        worker,
+            }
 
-                    inline: true
-                },
-
-                {
-                    name:
-                        "📦 Alat Dibeli",
-
-                    value:
-                        "```" +
-                        detail +
-                        "```",
-
-                    inline: false
-                },
-
-                {
-                    name:
-                        "💰 TOTAL PEMBELIAN",
-
-                    value:
-                        "$" +
-                        money(total),
-
-                    inline: false
-                }
-
-            ],
-
-            timestamp:
-                new Date().toISOString()
-
-        }]
+        ]
 
     };
 
 
     await sendWebhook(
-        WEBHOOK_BELI,
+        BUY_WEBHOOK,
         payload,
-        "beliStatus"
+        "Data pembelian berjaya dihantar ke Discord."
     );
 
 }
 
 
 /* =====================================================
-   WEBHOOK FUNCTION
-===================================================== */
+   SEND SELL DISCORD
+   ===================================================== */
+
+async function sendSellToDiscord(){
+
+    const data =
+        buildDiscordText("sell");
+
+
+    if(!data){
+
+        alert(
+            "Belum ada data penjualan."
+        );
+
+        return;
+
+    }
+
+
+    const payload = {
+
+        username:
+            "RK Garage - Data Jual",
+
+        embeds:[
+
+            {
+
+                title:
+                    "💰 DATA PENJUALAN",
+
+                color:
+                    5763719,
+
+                description:
+                    data.text,
+
+                fields:[
+
+                    {
+
+                        name:
+                            "💰 TOTAL PENJUALAN",
+
+                        value:
+                            "$" +
+                            money(data.total),
+
+                        inline:true
+
+                    }
+
+                ],
+
+                footer:{
+
+                    text:
+                        "RK Garage"
+
+                },
+
+                timestamp:
+                    new Date().toISOString()
+
+            }
+
+        ]
+
+    };
+
+
+    await sendWebhook(
+        SELL_WEBHOOK,
+        payload,
+        "Data penjualan berjaya dihantar ke Discord."
+    );
+
+}
+
+
+/* =====================================================
+   WEBHOOK
+   ===================================================== */
 
 async function sendWebhook(
     webhook,
     payload,
-    statusId
-) {
+    successMessage
+){
 
-    const status =
-        document.getElementById(statusId);
-
-
-    try {
+    try{
 
         const response =
             await fetch(
                 webhook,
                 {
 
-                    method: "POST",
+                    method:"POST",
 
-                    headers: {
-
+                    headers:{
                         "Content-Type":
                             "application/json"
-
                     },
 
                     body:
@@ -1145,41 +1645,34 @@ async function sendWebhook(
             );
 
 
-        if (response.ok) {
+        if(response.ok){
 
-            status.className =
-                "status success";
+            alert(
+                "✅ " +
+                successMessage
+            );
 
-            status.innerText =
-                "✅ Berjaya dihantar ke Discord.";
-
-        } else {
+        }else{
 
             const error =
                 await response.text();
 
             console.error(error);
 
-
-            status.className =
-                "status error";
-
-            status.innerText =
-                "❌ Gagal menghantar ke Discord.";
+            alert(
+                "❌ Gagal menghantar ke Discord."
+            );
 
         }
 
-    } catch (error) {
+    }catch(error){
 
         console.error(error);
 
-
-        status.className =
-            "status error";
-
-        status.innerText =
-            "❌ Error: " +
-            error.message;
+        alert(
+            "❌ Error webhook: " +
+            error.message
+        );
 
     }
 
@@ -1187,64 +1680,27 @@ async function sendWebhook(
 
 
 /* =====================================================
-   RESET
-===================================================== */
+   RENDER ALL
+   ===================================================== */
 
-function resetJual() {
+function renderAll(){
 
-    jualData = [];
+    renderBuyProducts();
 
-    document.getElementById(
-        "jualCustomer"
-    ).value = "";
+    renderSellProducts();
 
-    document.getElementById(
-        "jualSeller"
-    ).value = "";
+    updateDashboard();
 
-    document.getElementById(
-        "jualPlate"
-    ).value = "";
-
-    document.getElementById(
-        "jualQty"
-    ).value = 1;
-
-    renderJual();
-
-}
-
-
-function resetBeli() {
-
-    beliData = [];
-
-    document.getElementById(
-        "beliSupplier"
-    ).value = "";
-
-    document.getElementById(
-        "beliWorker"
-    ).value = "";
-
-    document.getElementById(
-        "beliQty"
-    ).value = 1;
-
-    renderBeli();
+    renderTransactions();
 
 }
 
 
 /* =====================================================
    START
-===================================================== */
+   ===================================================== */
 
-loadItems();
-
-renderJual();
-
-renderBeli();
+renderAll();
 
 </script>
 
