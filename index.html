@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RK Garage - Data Recap</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:
+        radial-gradient(circle at top,#3b1765 0%,#19082b 45%,#08050d 100%);
+    color:white;
+    min-height:100vh;
+    padding:25px 15px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+/* HEADER */
+
+.header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.logo{
+    width:180px;
+    max-width:70%;
+    height:auto;
+    display:block;
+    margin:0 auto 10px;
+    object-fit:contain;
+    filter:
+        drop-shadow(0 0 15px rgba(192,132,252,.6))
+        drop-shadow(0 0 35px rgba(168,85,247,.35));
+}
+
+.header h1{
+    font-size:45px;
+    color:#f5d0fe;
+    text-shadow:0 0 25px rgba(192,132,252,.6);
+}
+
+.header p{
+    color:#d8b4fe;
+    margin-top:5px;
+}
+
+/* DASHBOARD */
+
+.dashboard{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.card{
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+    padding:20px;
+    backdrop-filter:blur(10px);
+}
+
+.card h3{
+    color:#c4b5fd;
+    font-size:14px;
+    margin-bottom:8px;
+}
+
+.card .value{
+    font-size:28px;
+    font-weight:700;
+    color:#f5d0fe;
+}
+
+.card.profit .value{
+    color:#86efac;
+}
+
+/* BOX */
+
+.box{
+    background:rgba(255,255,255,.06);
+    border-radius:20px;
+    padding:22px;
+    margin-bottom:25px;
+    border:1px solid rgba(255,255,255,.07);
+}
+
+.box h2{
+    color:#f5d0fe;
+    margin-bottom:18px;
+}
+
+/* FORM */
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.form-group label{
+    font-size:13px;
+    color:#d8b4fe;
+}
+
+input,
+select{
+    width:100%;
+    padding:13px 15px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:12px;
+    background:#171020;
+    color:white;
+    outline:none;
+}
+
+input:focus,
+select:focus{
+    border-color:#a855f7;
+    box-shadow:0 0 0 2px rgba(168,85,247,.2);
+}
+
+button{
+    border:none;
+    border-radius:12px;
+    padding:13px 18px;
+    cursor:pointer;
+    color:white;
+    font-weight:600;
+    background:linear-gradient(135deg,#9333ea,#c084fc);
+    transition:.2s;
+}
+
+button:hover{
+    transform:translateY(-1px);
+    opacity:.9;
+}
+
+.add-btn{
+    margin-top:18px;
+    width:100%;
+}
+
+/* PRICE INFO */
+
+.price-info{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-top:15px;
+}
+
+.price-card{
+    background:rgba(255,255,255,.05);
+    padding:15px;
+    border-radius:14px;
+}
+
+.price-card span{
+    display:block;
+    color:#a8a0b5;
+    font-size:12px;
+}
+
+.price-card strong{
+    display:block;
+    margin-top:5px;
+    font-size:18px;
+}
+
+.green{
+    color:#86efac;
+}
+
+.yellow{
+    color:#fde68a;
+}
+
+/* TABS */
+
+.tabs{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.tab{
+    flex:1;
+}
+
+.tab.active{
+    background:linear-gradient(135deg,#7e22ce,#a855f7);
+}
+
+/* TABLE */
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:750px;
+}
+
+th{
+    text-align:left;
+    padding:13px;
+    color:#d8b4fe;
+    background:rgba(255,255,255,.05);
+}
+
+td{
+    padding:13px;
+    border-bottom:1px solid rgba(255,255,255,.07);
+}
+
+.type-buy{
+    color:#fbbf24;
+    font-weight:600;
+}
+
+.type-sale{
+    color:#86efac;
+    font-weight:600;
+}
+
+.delete-btn{
+    background:#dc2626;
+    padding:7px 11px;
+    font-size:12px;
+}
+
+/* SEARCH */
+
+.search{
+    margin-bottom:15px;
+}
+
+/* WARNING */
+
+.warning{
+    background:rgba(245,158,11,.1);
+    border:1px solid rgba(245,158,11,.3);
+    color:#fde68a;
+    padding:12px;
+    border-radius:12px;
+    margin-top:15px;
+    font-size:13px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+    .dashboard{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .price-info{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:600px){
+    body{
+        padding:15px 10px;
+    }
+
+    .header h1{
+        font-size:32px;
+    }
+
+    .dashboard{
+        grid-template-columns:1fr;
+    }
+
+    .tabs{
+        flex-direction:column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <img
+        src="./RK_Garage.png"
+        alt="RK Garage Logo"
+        class="logo"
+    >
+
+    <h1>RK GARAGE</h1>
+
+    <p>Data Recap Pembelian & Penjualan</p>
+
+</div>
+
+
+<!-- DASHBOARD -->
+
+<div class="dashboard">
+
+    <div class="card">
+        <h3>TOTAL PEMBELIAN</h3>
+        <div class="value" id="totalBuy">$0</div>
+    </div>
+
+    <div class="card">
+        <h3>TOTAL PENJUALAN</h3>
+        <div class="value" id="totalSale">$0</div>
+    </div>
+
+    <div class="card profit">
+        <h3>TOTAL PROFIT</h3>
+        <div class="value" id="totalProfit">$0</div>
+    </div>
+
+    <div class="card">
+        <h3>TRANSAKSI</h3>
+        <div class="value" id="transactionCount">0</div>
+    </div>
+
+</div>
+
+
+<!-- TRANSACTION FORM -->
+
+<div class="box">
+
+    <h2>📝 Tambah Rekap</h2>
+
+    <div class="tabs">
+
+        <button
+            id="buyTab"
+            class="tab active"
+            onclick="setType('buy')"
+        >
+            📦 Pembelian Alat
+        </button>
+
+        <button
+            id="saleTab"
+            class="tab"
+            onclick="setType('sale')"
+        >
+            💰 Penjualan Warga
+        </button>
+
+    </div>
+
+
+    <div class="form-grid">
+
+        <div class="form-group">
+
+            <label>Nama Barang</label>
+
+            <select
+                id="product"
+                onchange="showPrice()"
+            ></select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Quantity</label>
+
+            <input
+                type="number"
+                id="quantity"
+                min="1"
+                value="1"
+                oninput="showPrice()"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Nama Staff / Mekanik</label>
+
+            <input
+                type="text"
+                id="staff"
+                placeholder="Contoh: Waedu"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Catatan</label>
+
+            <input
+                type="text"
+                id="note"
+                placeholder="Optional"
+            >
+
+        </div>
+
+    </div>
+
+
+    <div class="price-info">
+
+        <div class="price-card">
+
+            <span>Harga Beli / Unit</span>
+
+            <strong id="buyPrice">
+                $0
+            </strong>
+
+        </div>
+
+
+        <div class="price-card">
+
+            <span>Harga Jual / Unit</span>
+
+            <strong id="salePrice">
+                -
+            </strong>
+
+        </div>
+
+
+        <div class="price-card">
+
+            <span>Profit / Unit</span>
+
+            <strong
+                id="profitPrice"
+                class="green"
+            >
+                -
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="limitWarning"
+        class="warning"
+        style="display:none;"
+    ></div>
+
+
+    <button
+        class="add-btn"
+        onclick="addTransaction()"
+    >
+        ➕ Simpan Rekap
+    </button>
+
+</div>
+
+
+<!-- TRANSACTIONS -->
+
+<div class="box">
+
+    <h2>📊 Rekap Transaksi</h2>
+
+    <input
+        class="search"
+        id="search"
+        placeholder="🔍 Cari barang / staff..."
+        oninput="renderTransactions()"
+    >
+
+
+    <div class="table-wrap">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Tarikh</th>
+                    <th>Jenis</th>
+                    <th>Barang</th>
+                    <th>Qty</th>
+                    <th>Total</th>
+                    <th>Profit</th>
+                    <th>Staff</th>
+                    <th></th>
+                </tr>
+
+            </thead>
+
+            <tbody id="transactionTable"></tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- PRICE LIST -->
+
+<div class="box">
+
+    <h2>💵 Senarai Harga</h2>
+
+    <div class="table-wrap">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Barang</th>
+                    <th>Harga Beli</th>
+                    <th>Harga Jual</th>
+                    <th>Profit</th>
+                    <th>Limit / Day</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="priceTable"></tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================================
+   PRODUCT DATABASE
+========================================= */
+
+const products = {
+
+    "ADVANCE REPAIR KIT": {
+        buy: 10000,
+        sale: null,
+        limit: null
+    },
+
+    "REPAIR KIT": {
+        buy: 9000,
+        sale: 11000,
+        limit: 5
+    },
+
+    "TIRE KIT": {
+        buy: 9000,
+        sale: 11000,
+        limit: 5
+    },
+
+    "CLEANING KIT": {
+        buy: 2500,
+        sale: 5000,
+        limit: 5
+    }
+
+};
+
+
+/* =========================================
+   VARIABLES
+========================================= */
+
+let transactionType = "buy";
+
+let transactions =
+    JSON.parse(
+        localStorage.getItem(
+            "rkGarageTransactions"
+        )
+    ) || [];
+
+
+/* =========================================
+   MONEY
+========================================= */
+
+function money(number){
+
+    return Number(number)
+        .toLocaleString("en-US");
+
+}
+
+
+/* =========================================
+   SET TYPE
+========================================= */
+
+function setType(type){
+
+    transactionType = type;
+
+    document
+        .getElementById("buyTab")
+        .classList.toggle(
+            "active",
+            type === "buy"
+        );
+
+    document
+        .getElementById("saleTab")
+        .classList.toggle(
+            "active",
+            type === "sale"
+        );
+
+    loadProducts();
+
+    showPrice();
+
+}
+
+
+/* =========================================
+   LOAD PRODUCTS
+========================================= */
+
+function loadProducts(){
+
+    const select =
+        document.getElementById("product");
+
+    select.innerHTML = "";
+
+    Object.keys(products).forEach(
+        name => {
+
+            const item =
+                products[name];
+
+            if(
+                transactionType === "sale" &&
+                item.sale === null
+            ){
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+                option.value = name;
+
+                option.textContent =
+                    name +
+                    " - HARGA JUAL BELUM DITETAPKAN";
+
+                option.disabled = true;
+
+                select.appendChild(option);
+
+                return;
+            }
+
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value = name;
+
+            if(transactionType === "buy"){
+
+                option.textContent =
+                    name +
+                    " - $" +
+                    money(item.buy);
+
+            }else{
+
+                option.textContent =
+                    name +
+                    " - $" +
+                    money(item.sale);
+
+            }
+
+            select.appendChild(option);
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   SHOW PRICE
+========================================= */
+
+function showPrice(){
+
+    const name =
+        document.getElementById(
+            "product"
+        ).value;
+
+    if(!name) return;
+
+    const item =
+        products[name];
+
+    const quantity =
+        Number(
+            document.getElementById(
+                "quantity"
+            ).value
+        ) || 1;
+
+
+    document.getElementById(
+        "buyPrice"
+    ).innerText =
+        "$" +
+        money(item.buy);
+
+
+    if(item.sale !== null){
+
+        document.getElementById(
+            "salePrice"
+        ).innerText =
+            "$" +
+            money(item.sale);
+
+
+        document.getElementById(
+            "profitPrice"
+        ).innerText =
+            "$" +
+            money(
+                item.sale -
+                item.buy
+            );
+
+    }else{
+
+        document.getElementById(
+            "salePrice"
+        ).innerText =
+            "Belum ditetapkan";
+
+        document.getElementById(
+            "profitPrice"
+        ).innerText =
+            "-";
+
+    }
+
+
+    const warning =
+        document.getElementById(
+            "limitWarning"
+        );
+
+
+    if(
+        transactionType === "sale" &&
+        item.limit !== null
+    ){
+
+        const today =
+            new Date()
+            .toISOString()
+            .split("T")[0];
+
+
+        const soldToday =
+            transactions
+            .filter(t =>
+                t.type === "sale" &&
+                t.product === name &&
+                t.date === today
+            )
+            .reduce(
+                (sum,t) =>
+                    sum + t.quantity,
+                0
+            );
+
+
+        const remaining =
+            item.limit -
+            soldToday;
+
+
+        if(quantity > remaining){
+
+            warning.style.display =
+                "block";
+
+            warning.innerText =
+                "⚠️ Limit jual " +
+                name +
+                " ialah " +
+                item.limit +
+                " pcs/day. " +
+                "Baki hari ini: " +
+                Math.max(
+                    remaining,
+                    0
+                ) +
+                " pcs.";
+
+        }else{
+
+            warning.style.display =
+                "none";
+
+        }
+
+    }else{
+
+        warning.style.display =
+            "none";
+
+    }
+
+}
+
+
+/* =========================================
+   ADD TRANSACTION
+========================================= */
+
+function addTransaction(){
+
+    const name =
+        document.getElementById(
+            "product"
+        ).value;
+
+    const quantity =
+        Number(
+            document.getElementById(
+                "quantity"
+            ).value
+        );
+
+
+    const staff =
+        document.getElementById(
+            "staff"
+        ).value.trim() ||
+        "-";
+
+
+    const note =
+        document.getElementById(
+            "note"
+        ).value.trim() ||
+        "-";
+
+
+    if(!name){
+
+        alert(
+            "Pilih barang dahulu."
+        );
+
+        return;
+
+    }
+
+
+    if(quantity <= 0){
+
+        alert(
+            "Quantity tidak sah."
+        );
+
+        return;
+
+    }
+
+
+    const item =
+        products[name];
+
+
+    /* SALE VALIDATION */
+
+    if(transactionType === "sale"){
+
+        if(item.sale === null){
+
+            alert(
+                "Harga jual barang ini belum ditetapkan."
+            );
+
+            return;
+
+        }
+
+
+        const today =
+            new Date()
+            .toISOString()
+            .split("T")[0];
+
+
+        const soldToday =
+            transactions
+            .filter(t =>
+                t.type === "sale" &&
+                t.product === name &&
+                t.date === today
+            )
+            .reduce(
+                (sum,t) =>
+                    sum + t.quantity,
+                0
+            );
+
+
+        if(
+            item.limit !== null &&
+            soldToday + quantity >
+            item.limit
+        ){
+
+            alert(
+                "Limit jual " +
+                name +
+                " ialah " +
+                item.limit +
+                " pcs/day.\n" +
+                "Sudah terjual hari ini: " +
+                soldToday +
+                " pcs."
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    const buyTotal =
+        item.buy *
+        quantity;
+
+
+    const saleTotal =
+        item.sale !== null
+            ? item.sale * quantity
+            : 0;
+
+
+    const profit =
+        item.sale !== null
+            ? (
+                item.sale -
+                item.buy
+            ) * quantity
+            : 0;
+
+
+    const transaction = {
+
+        id:
+            Date.now(),
+
+        date:
+            new Date()
+            .toISOString()
+            .split("T")[0],
+
+        type:
+            transactionType,
+
+        product:
+            name,
+
+        quantity:
+            quantity,
+
+        buyTotal:
+            buyTotal,
+
+        saleTotal:
+            saleTotal,
+
+        profit:
+            profit,
+
+        staff:
+            staff,
+
+        note:
+            note
+
+    };
+
+
+    transactions.unshift(
+        transaction
+    );
+
+
+    saveData();
+
+    renderTransactions();
+
+    updateDashboard();
+
+    showPrice();
+
+
+    document.getElementById(
+        "quantity"
+    ).value = 1;
+
+
+    document.getElementById(
+        "note"
+    ).value = "";
+
+
+    alert(
+        "✅ Rekap berjaya disimpan."
+    );
+
+}
+
+
+/* =========================================
+   DELETE
+========================================= */
+
+function deleteTransaction(id){
+
+    const confirmDelete =
+        confirm(
+            "Hapus transaksi ini?"
+        );
+
+
+    if(!confirmDelete) return;
+
+
+    transactions =
+        transactions.filter(
+            t => t.id !== id
+        );
+
+
+    saveData();
+
+    renderTransactions();
+
+    updateDashboard();
+
+    showPrice();
+
+}
+
+
+/* =========================================
+   SAVE
+========================================= */
+
+function saveData(){
+
+    localStorage.setItem(
+        "rkGarageTransactions",
+        JSON.stringify(
+            transactions
+        )
+    );
+
+}
+
+
+/* =========================================
+   DASHBOARD
+========================================= */
+
+function updateDashboard(){
+
+    let buy = 0;
+
+    let sale = 0;
+
+    let profit = 0;
+
+
+    transactions.forEach(
+        t => {
+
+            buy += t.buyTotal;
+
+            sale += t.saleTotal;
+
+            profit += t.profit;
+
+        }
+    );
+
+
+    document.getElementById(
+        "totalBuy"
+    ).innerText =
+        "$" +
+        money(buy);
+
+
+    document.getElementById(
+        "totalSale"
+    ).innerText =
+        "$" +
+        money(sale);
+
+
+    document.getElementById(
+        "totalProfit"
+    ).innerText =
+        "$" +
+        money(profit);
+
+
+    document.getElementById(
+        "transactionCount"
+    ).innerText =
+        transactions.length;
+
+}
+
+
+/* =========================================
+   RENDER TRANSACTIONS
+========================================= */
+
+function renderTransactions(){
+
+    const table =
+        document.getElementById(
+            "transactionTable"
+        );
+
+
+    const search =
+        document.getElementById(
+            "search"
+        ).value
+        .toLowerCase();
+
+
+    table.innerHTML = "";
+
+
+    transactions
+    .filter(t => {
+
+        return (
+            t.product
+                .toLowerCase()
+                .includes(search) ||
+
+            t.staff
+                .toLowerCase()
+                .includes(search)
+        );
+
+    })
+    .forEach(t => {
+
+        const row =
+            document.createElement(
+                "tr"
+            );
+
+
+        const total =
+            t.type === "buy"
+                ? t.buyTotal
+                : t.saleTotal;
+
+
+        row.innerHTML = `
+
+            <td>
+                ${t.date}
+            </td>
+
+            <td>
+
+                <span
+                    class="${
+                        t.type === "buy"
+                        ? "type-buy"
+                        : "type-sale"
+                    }"
+                >
+
+                    ${
+                        t.type === "buy"
+                        ? "PEMBELIAN"
+                        : "PENJUALAN"
+                    }
+
+                </span>
+
+            </td>
+
+            <td>
+                ${t.product}
+            </td>
+
+            <td>
+                ${t.quantity}
+            </td>
+
+            <td>
+                $${money(total)}
+            </td>
+
+            <td class="green">
+
+                ${
+                    t.type === "sale"
+                    ? "$" + money(t.profit)
+                    : "-"
+                }
+
+            </td>
+
+            <td>
+                ${t.staff}
+            </td>
+
+            <td>
+
+                <button
+                    class="delete-btn"
+                    onclick="deleteTransaction(${t.id})"
+                >
+                    Hapus
+                </button>
+
+            </td>
+
+        `;
+
+
+        table.appendChild(row);
+
+    });
+
+}
+
+
+/* =========================================
+   PRICE TABLE
+========================================= */
+
+function renderPriceTable(){
+
+    const table =
+        document.getElementById(
+            "priceTable"
+        );
+
+
+    table.innerHTML = "";
+
+
+    Object.keys(products)
+    .forEach(name => {
+
+        const item =
+            products[name];
+
+
+        const profit =
+            item.sale !== null
+                ? item.sale - item.buy
+                : null;
+
+
+        const row =
+            document.createElement(
+                "tr"
+            );
+
+
+        row.innerHTML = `
+
+            <td>
+                ${name}
+            </td>
+
+            <td>
+                $${money(item.buy)}
+            </td>
+
+            <td>
+
+                ${
+                    item.sale !== null
+                    ? "$" + money(item.sale)
+                    : '<span class="yellow">Belum ditetapkan</span>'
+                }
+
+            </td>
+
+            <td class="green">
+
+                ${
+                    profit !== null
+                    ? "$" + money(profit)
+                    : "-"
+                }
+
+            </td>
+
+            <td>
+
+                ${
+                    item.limit !== null
+                    ? item.limit + " pcs/day"
+                    : "-"
+                }
+
+            </td>
+
+        `;
+
+
+        table.appendChild(row);
+
+    });
+
+}
+
+
+/* =========================================
+   START
+========================================= */
+
+loadProducts();
+
+renderPriceTable();
+
+renderTransactions();
+
+updateDashboard();
+
+showPrice();
+
+</script>
+
+</body>
+</html>
